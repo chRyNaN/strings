@@ -18,11 +18,6 @@ object Strings {
     fun array(identifier: ResourceIdentifier) = accessor.getStringArray(identifier = identifier)
 }
 
-interface ResourceIdentifier {
-
-    val id: String
-}
-
 interface StringResourceAccessor {
 
     fun getString(identifier: ResourceIdentifier): String
