@@ -1,0 +1,15 @@
+apply plugin: 'org.jetbrains.kotlin.jvm'
+
+group 'com.chrynan.resources.plugin'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
