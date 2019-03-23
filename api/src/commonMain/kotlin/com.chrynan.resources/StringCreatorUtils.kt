@@ -1,7 +1,7 @@
 package com.chrynan.resources
 
 data class StringResourcesFile(
-    val fileName: String,
+    val identifier: ResourceFileIdentifier,
     val singleStringResources: Set<SingleStringResource>,
     val pluralStringResources: Set<PluralStringResource>,
     val stringArrayResources: Set<StringArrayResource>
@@ -27,7 +27,7 @@ data class QuantityStringResource(
     val quantity: Quantity
 )
 
-class StringResourcesFileBuilder(private val fileName: String) {
+class StringResourcesFileBuilder(private val identifier: ResourceFileIdentifier) {
 
     private val singleStringResources = mutableSetOf<SingleStringResource>()
     private val pluralStringResources = mutableSetOf<PluralStringResource>()
@@ -86,7 +86,7 @@ class StringResourcesFileBuilder(private val fileName: String) {
     }
 
     internal fun build() = StringResourcesFile(
-        fileName = fileName,
+        identifier = identifier,
         singleStringResources = singleStringResources,
         pluralStringResources = pluralStringResources,
         stringArrayResources = stringArrayResources
@@ -123,11 +123,6 @@ class StringArrayBuilder(private val identifier: ResourceIdentifier) {
     internal fun build() = StringArrayResource(identifier = identifier, values = arrayValues)
 }
 
-data class NameResourceIdentifier(private val name: String) : ResourceIdentifier {
-
-    override val id = name
-}
-
 enum class Quantity {
 
     ZERO,
@@ -139,7 +134,13 @@ enum class Quantity {
 }
 
 fun strings(fileName: String, builder: StringResourcesFileBuilder.() -> Unit): StringResourcesFile {
-    val fileBuilder = StringResourcesFileBuilder(fileName = fileName)
+    val fileBuilder = StringResourcesFileBuilder(identifier = NameResourceFileIdentifier(name = fileName))
+    builder.invoke(fileBuilder)
+    return fileBuilder.build()
+}
+
+fun strings(identifier: ResourceFileIdentifier, builder: StringResourcesFileBuilder.() -> Unit): StringResourcesFile {
+    val fileBuilder = StringResourcesFileBuilder(identifier = identifier)
     builder.invoke(fileBuilder)
     return fileBuilder.build()
 }
