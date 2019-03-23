@@ -2,7 +2,9 @@ package com.chrynan.resources
 
 data class StringResourcesFile(
     val fileName: String,
-    val singleStringResources: Set<SingleStringResource>
+    val singleStringResources: Set<SingleStringResource>,
+    val pluralStringResources: Set<PluralStringResource>,
+    val stringArrayResources: Set<StringArrayResource>
 )
 
 data class SingleStringResource(
@@ -83,7 +85,12 @@ class StringResourcesFileBuilder(private val fileName: String) {
         stringArrayResources += arrayBuilder.build()
     }
 
-    internal fun build() = StringResourcesFile(fileName = fileName, singleStringResources = singleStringResources)
+    internal fun build() = StringResourcesFile(
+        fileName = fileName,
+        singleStringResources = singleStringResources,
+        pluralStringResources = pluralStringResources,
+        stringArrayResources = stringArrayResources
+    )
 }
 
 class PluralStringBuilder(private val identifier: ResourceIdentifier) {

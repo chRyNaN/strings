@@ -13,7 +13,11 @@ object Strings {
         accessor.getQuantityString(identifier = identifier, quantity = quantity)
 
     fun quantity(identifier: ResourceIdentifier, quantity: Int, vararg formatArgs: Any) =
-        accessor.getQuantityString(identifier = identifier, quantity = quantity, formatArgs = *formatArgs)
+        accessor.getQuantityString(
+            identifier = identifier,
+            quantity = quantity,
+            formatArgs = *formatArgs
+        )
 
     fun array(identifier: ResourceIdentifier) = accessor.getStringArray(identifier = identifier)
 }
