@@ -9,4 +9,6 @@ pluginManagement {
 }
 rootProject.name = 'resources'
 
+include ':api'
+
 enableFeaturePreview('GRADLE_METADATA')
