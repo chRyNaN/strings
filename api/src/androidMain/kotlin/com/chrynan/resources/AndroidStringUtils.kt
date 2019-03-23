@@ -22,21 +22,21 @@ fun Context.getStringArrayByName(name: String): Array<String> =
 
 class AndroidStringResourceAccessor(private val appContext: Context) : StringResourceAccessor {
 
-    override fun getString(identifier: StringResourceIdentifier): String =
+    override fun getString(identifier: ResourceIdentifier): String =
         try {
             appContext.getStringByName(name = identifier.id)
         } catch (e: Exception) {
             throw StringResourceNotFoundException(resourceId = identifier.id)
         }
 
-    override fun getString(identifier: StringResourceIdentifier, vararg formatArgs: Any): String =
+    override fun getString(identifier: ResourceIdentifier, vararg formatArgs: Any): String =
         try {
             appContext.getStringByName(name = identifier.id, formatArgs = *formatArgs)
         } catch (e: Exception) {
             throw StringResourceNotFoundException(resourceId = identifier.id)
         }
 
-    override fun getQuantityString(identifier: StringResourceIdentifier, quantity: Int): String =
+    override fun getQuantityString(identifier: ResourceIdentifier, quantity: Int): String =
         try {
             appContext.getQuantityStringByName(name = identifier.id, quantity = quantity)
         } catch (e: Exception) {
@@ -44,7 +44,7 @@ class AndroidStringResourceAccessor(private val appContext: Context) : StringRes
         }
 
     override fun getQuantityString(
-        identifier: StringResourceIdentifier,
+        identifier: ResourceIdentifier,
         quantity: Int,
         vararg formatArgs: Any
     ): String =
@@ -54,7 +54,7 @@ class AndroidStringResourceAccessor(private val appContext: Context) : StringRes
             throw StringResourceNotFoundException(resourceId = identifier.id)
         }
 
-    override fun getStringArray(identifier: StringResourceIdentifier): Array<String> =
+    override fun getStringArray(identifier: ResourceIdentifier): Array<String> =
         try {
             appContext.getStringArrayByName(name = identifier.id)
         } catch (e: Exception) {

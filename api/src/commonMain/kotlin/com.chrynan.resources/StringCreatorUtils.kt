@@ -6,17 +6,17 @@ data class StringResourcesFile(
 )
 
 data class SingleStringResource(
-    val identifier: StringResourceIdentifier,
+    val identifier: ResourceIdentifier,
     val value: String
 )
 
 data class PluralStringResource(
-    val identifier: StringResourceIdentifier,
+    val identifier: ResourceIdentifier,
     val quantities: Set<QuantityStringResource>
 )
 
 data class StringArrayResource(
-    val identifier: StringResourceIdentifier,
+    val identifier: ResourceIdentifier,
     val values: List<String>
 )
 
@@ -31,7 +31,7 @@ class StringResourcesFileBuilder(private val fileName: String) {
     private val pluralStringResources = mutableSetOf<PluralStringResource>()
     private val stringArrayResources = mutableSetOf<StringArrayResource>()
 
-    fun string(identifier: StringResourceIdentifier, value: String) {
+    fun string(identifier: ResourceIdentifier, value: String) {
         singleStringResources += SingleStringResource(
             identifier = identifier,
             value = value
@@ -40,12 +40,12 @@ class StringResourcesFileBuilder(private val fileName: String) {
 
     fun string(name: String, value: String) {
         singleStringResources += SingleStringResource(
-            identifier = NameStringResourceIdentifier(name = name),
+            identifier = NameResourceIdentifier(name = name),
             value = value
         )
     }
 
-    fun string(identifier: StringResourceIdentifier, accessor: () -> String) {
+    fun string(identifier: ResourceIdentifier, accessor: () -> String) {
         singleStringResources += SingleStringResource(
             identifier = identifier,
             value = accessor.invoke()
@@ -54,30 +54,30 @@ class StringResourcesFileBuilder(private val fileName: String) {
 
     fun string(name: String, accessor: () -> String) {
         singleStringResources += SingleStringResource(
-            identifier = NameStringResourceIdentifier(name = name),
+            identifier = NameResourceIdentifier(name = name),
             value = accessor.invoke()
         )
     }
 
     fun plurals(name: String, builder: PluralStringBuilder.() -> Unit) {
-        val pluralBuilder = PluralStringBuilder(identifier = NameStringResourceIdentifier(name = name))
+        val pluralBuilder = PluralStringBuilder(identifier = NameResourceIdentifier(name = name))
         builder.invoke(pluralBuilder)
         pluralStringResources += pluralBuilder.build()
     }
 
-    fun plurals(identifier: StringResourceIdentifier, builder: PluralStringBuilder.() -> Unit) {
+    fun plurals(identifier: ResourceIdentifier, builder: PluralStringBuilder.() -> Unit) {
         val pluralBuilder = PluralStringBuilder(identifier = identifier)
         builder.invoke(pluralBuilder)
         pluralStringResources += pluralBuilder.build()
     }
 
     fun array(name: String, builder: StringArrayBuilder.() -> Unit) {
-        val arrayBuilder = StringArrayBuilder(identifier = NameStringResourceIdentifier(name = name))
+        val arrayBuilder = StringArrayBuilder(identifier = NameResourceIdentifier(name = name))
         builder.invoke(arrayBuilder)
         stringArrayResources += arrayBuilder.build()
     }
 
-    fun array(identifier: StringResourceIdentifier, builder: StringArrayBuilder.() -> Unit) {
+    fun array(identifier: ResourceIdentifier, builder: StringArrayBuilder.() -> Unit) {
         val arrayBuilder = StringArrayBuilder(identifier = identifier)
         builder.invoke(arrayBuilder)
         stringArrayResources += arrayBuilder.build()
@@ -86,7 +86,7 @@ class StringResourcesFileBuilder(private val fileName: String) {
     internal fun build() = StringResourcesFile(fileName = fileName, singleStringResources = singleStringResources)
 }
 
-class PluralStringBuilder(private val identifier: StringResourceIdentifier) {
+class PluralStringBuilder(private val identifier: ResourceIdentifier) {
 
     private val quantityStringResources = mutableSetOf<QuantityStringResource>()
 
@@ -101,7 +101,7 @@ class PluralStringBuilder(private val identifier: StringResourceIdentifier) {
     internal fun build() = PluralStringResource(identifier = identifier, quantities = quantityStringResources)
 }
 
-class StringArrayBuilder(private val identifier: StringResourceIdentifier) {
+class StringArrayBuilder(private val identifier: ResourceIdentifier) {
 
     private val arrayValues = mutableListOf<String>()
 
@@ -116,7 +116,7 @@ class StringArrayBuilder(private val identifier: StringResourceIdentifier) {
     internal fun build() = StringArrayResource(identifier = identifier, values = arrayValues)
 }
 
-data class NameStringResourceIdentifier(private val name: String) : StringResourceIdentifier {
+data class NameResourceIdentifier(private val name: String) : ResourceIdentifier {
 
     override val id = name
 }
