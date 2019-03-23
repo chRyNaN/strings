@@ -13,6 +13,8 @@ data class NameResourceIdentifier(private val name: String) : ResourceIdentifier
 interface ResourceAccessor {
 
     val stringResourceAccessor: StringResourceAccessor
+
+    val booleanResourceAccessor: BooleanResourceAccessor
 }
 
 interface ResourceFileIdentifier {

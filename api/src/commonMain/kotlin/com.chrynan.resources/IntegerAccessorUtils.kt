@@ -1,17 +1,17 @@
 package com.chrynan.resources
 
-interface IntegerAccessor {
+interface IntegerResourceAccessor {
 
     fun getInteger(identifier: ResourceIdentifier): Int
 
     fun getIntegerArray(identifier: ResourceIdentifier): Array<Int>
 }
 
-class IntegerResourceNotFound(resourceId: String) : ResourceNotFoundException(resourceId = resourceId)
+class IntegerResourceNotFoundException(resourceId: String) : ResourceNotFoundException(resourceId = resourceId)
 
 object Integers {
 
-    lateinit var accessor: IntegerAccessor
+    lateinit var accessor: IntegerResourceAccessor
 
     fun integer(identifier: ResourceIdentifier) = accessor.getInteger(identifier = identifier)
 

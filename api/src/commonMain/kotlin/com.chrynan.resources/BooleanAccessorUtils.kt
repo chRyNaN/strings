@@ -2,19 +2,19 @@ package com.chrynan.resources
 
 object Booleans {
 
-    lateinit var accessor: BooleanAccessor
+    lateinit var accessor: BooleanResourceAccessor
 
     fun boolean(identifier: ResourceIdentifier) = accessor.getBoolean(identifier = identifier)
 
     fun boolean(name: String) = accessor.getBoolean(identifier = NameResourceIdentifier(name = name))
 }
 
-interface BooleanAccessor {
+interface BooleanResourceAccessor {
 
     fun getBoolean(identifier: ResourceIdentifier): Boolean
 }
 
-class BooleanResourceNotFound(resourceId: String) : ResourceNotFoundException(resourceId = resourceId)
+class BooleanResourceNotFoundException(resourceId: String) : ResourceNotFoundException(resourceId = resourceId)
 
 fun boolean(identifier: ResourceIdentifier) = lazy { Booleans.boolean(identifier = identifier) }
 
