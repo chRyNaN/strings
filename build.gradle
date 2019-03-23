@@ -34,7 +34,7 @@ ext {
     libraryVersionCode = 1
 }
 
-group 'com.chrynan.strings'
+group 'com.chrynan.resources'
 version rootProject.libraryVersion
 
 android {

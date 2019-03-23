@@ -7,6 +7,6 @@ pluginManagement {
         }
     }
 }
-rootProject.name = 'strings'
+rootProject.name = 'resources'
 
 enableFeaturePreview('GRADLE_METADATA')
