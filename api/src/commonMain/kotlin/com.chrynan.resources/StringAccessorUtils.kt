@@ -6,11 +6,19 @@ object Strings {
 
     fun single(identifier: ResourceIdentifier) = accessor.getString(identifier = identifier)
 
+    fun single(name: String) = accessor.getString(identifier = NameResourceIdentifier(name = name))
+
     fun single(identifier: ResourceIdentifier, vararg formatArgs: Any) =
         accessor.getString(identifier = identifier, formatArgs = *formatArgs)
 
+    fun single(name: String, vararg formatArgs: Any) =
+        accessor.getString(identifier = NameResourceIdentifier(name = name), formatArgs = *formatArgs)
+
     fun quantity(identifier: ResourceIdentifier, quantity: Int) =
         accessor.getQuantityString(identifier = identifier, quantity = quantity)
+
+    fun quantity(name: String, quantity: Int) =
+        accessor.getQuantityString(identifier = NameResourceIdentifier(name = name), quantity = quantity)
 
     fun quantity(identifier: ResourceIdentifier, quantity: Int, vararg formatArgs: Any) =
         accessor.getQuantityString(
@@ -19,7 +27,16 @@ object Strings {
             formatArgs = *formatArgs
         )
 
+    fun quantity(name: String, quantity: Int, vararg formatArgs: Any) =
+        accessor.getQuantityString(
+            identifier = NameResourceIdentifier(name = name),
+            quantity = quantity,
+            formatArgs = *formatArgs
+        )
+
     fun array(identifier: ResourceIdentifier) = accessor.getStringArray(identifier = identifier)
+
+    fun array(name: String) = accessor.getStringArray(identifier = NameResourceIdentifier(name = name))
 }
 
 interface StringResourceAccessor {
@@ -40,13 +57,26 @@ class StringResourceNotFoundException(resourceId: String) :
 
 fun string(identifier: ResourceIdentifier) = lazy { Strings.single(identifier = identifier) }
 
+fun string(name: String) = lazy { Strings.single(name = name) }
+
 fun string(identifier: ResourceIdentifier, vararg formatArgs: Any) =
     lazy { Strings.single(identifier = identifier, formatArgs = *formatArgs) }
+
+fun string(name: String, vararg formatArgs: Any) =
+    lazy { Strings.single(name = name, formatArgs = *formatArgs) }
 
 fun quantityString(identifier: ResourceIdentifier, quantity: Int) =
     lazy { Strings.quantity(identifier = identifier, quantity = quantity) }
 
+fun quantityString(name: String, quantity: Int) =
+    lazy { Strings.quantity(name = name, quantity = quantity) }
+
 fun quantityString(identifier: ResourceIdentifier, quantity: Int, vararg formatArgs: Any) =
     lazy { Strings.quantity(identifier = identifier, quantity = quantity, formatArgs = *formatArgs) }
 
+fun quantityString(name: String, quantity: Int, vararg formatArgs: Any) =
+    lazy { Strings.quantity(name = name, quantity = quantity, formatArgs = *formatArgs) }
+
 fun stringArray(identifier: ResourceIdentifier) = lazy { Strings.array(identifier = identifier) }
+
+fun stringArray(name: String) = lazy { Strings.array(name = name) }
