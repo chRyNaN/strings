@@ -24,3 +24,6 @@ data class NameResourceFileIdentifier(private val name: String) : ResourceFileId
 
     override val fileName = name
 }
+
+open class ResourceNotFoundException(resourceId: String, additionalMessage: String? = null) :
+    RuntimeException("Resource not found with the resourceId = $resourceId. Additional Message = $additionalMessage")

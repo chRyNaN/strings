@@ -14,8 +14,7 @@ interface BooleanAccessor {
     fun getBoolean(identifier: ResourceIdentifier): Boolean
 }
 
-class BooleanResourceNotFound(resourceId: String) :
-    RuntimeException("Could not find Boolean Resource with ID = $resourceId.")
+class BooleanResourceNotFound(resourceId: String) : ResourceNotFoundException(resourceId = resourceId)
 
 fun boolean(identifier: ResourceIdentifier) = lazy { Booleans.boolean(identifier = identifier) }
 

@@ -52,8 +52,7 @@ interface StringResourceAccessor {
     fun getStringArray(identifier: ResourceIdentifier): Array<String>
 }
 
-class StringResourceNotFoundException(resourceId: String) :
-    RuntimeException("Could not find String Resource with ID = $resourceId.")
+class StringResourceNotFoundException(resourceId: String) : ResourceNotFoundException(resourceId = resourceId)
 
 fun string(identifier: ResourceIdentifier) = lazy { Strings.single(identifier = identifier) }
 
