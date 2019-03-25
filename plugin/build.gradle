@@ -4,6 +4,8 @@ group 'com.chrynan.resources.plugin'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    implementation project(':api')
 }
 
 compileKotlin {
