@@ -1,11 +1,5 @@
 package com.chrynan.resources
 
-data class IntegerResourcesFile(
-    val identifier: ResourceFileIdentifier,
-    val integerResources: Set<IntegerResource>,
-    val integerArrayResources: Set<IntegerArrayResource>
-)
-
 data class IntegerResource(
     val identifier: ResourceIdentifier,
     val value: Int
@@ -49,7 +43,7 @@ class IntegerResourcesFileBuilder(private val identifier: ResourceFileIdentifier
         integerArrayResources += arrayBuilder.build()
     }
 
-    internal fun build() = IntegerResourcesFile(
+    internal fun build() = ResourceFile.IntegerResourcesFile(
         identifier = identifier,
         integerResources = integerResources,
         integerArrayResources = integerArrayResources
@@ -74,13 +68,13 @@ class IntegerArrayBuilder(private val identifier: ResourceIdentifier) {
 fun integers(
     identifier: ResourceFileIdentifier,
     builder: IntegerResourcesFileBuilder.() -> Unit
-): IntegerResourcesFile {
+): ResourceFile.IntegerResourcesFile {
     val fileBuilder = IntegerResourcesFileBuilder(identifier = identifier)
     builder.invoke(fileBuilder)
     return fileBuilder.build()
 }
 
-fun integers(name: String, builder: IntegerResourcesFileBuilder.() -> Unit): IntegerResourcesFile {
+fun integers(name: String, builder: IntegerResourcesFileBuilder.() -> Unit): ResourceFile.IntegerResourcesFile {
     val fileBuilder = IntegerResourcesFileBuilder(identifier = NameResourceFileIdentifier(name = name))
     builder.invoke(fileBuilder)
     return fileBuilder.build()

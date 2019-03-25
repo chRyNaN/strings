@@ -1,12 +1,5 @@
 package com.chrynan.resources
 
-data class StringResourcesFile(
-    val identifier: ResourceFileIdentifier,
-    val singleStringResources: Set<SingleStringResource>,
-    val pluralStringResources: Set<PluralStringResource>,
-    val stringArrayResources: Set<StringArrayResource>
-)
-
 data class SingleStringResource(
     val identifier: ResourceIdentifier,
     val value: String
@@ -85,7 +78,7 @@ class StringResourcesFileBuilder(private val identifier: ResourceFileIdentifier)
         stringArrayResources += arrayBuilder.build()
     }
 
-    internal fun build() = StringResourcesFile(
+    internal fun build() = ResourceFile.StringResourcesFile(
         identifier = identifier,
         singleStringResources = singleStringResources,
         pluralStringResources = pluralStringResources,
@@ -133,13 +126,13 @@ enum class Quantity {
     OTHER
 }
 
-fun strings(fileName: String, builder: StringResourcesFileBuilder.() -> Unit): StringResourcesFile {
+fun strings(fileName: String, builder: StringResourcesFileBuilder.() -> Unit): ResourceFile.StringResourcesFile {
     val fileBuilder = StringResourcesFileBuilder(identifier = NameResourceFileIdentifier(name = fileName))
     builder.invoke(fileBuilder)
     return fileBuilder.build()
 }
 
-fun strings(identifier: ResourceFileIdentifier, builder: StringResourcesFileBuilder.() -> Unit): StringResourcesFile {
+fun strings(identifier: ResourceFileIdentifier, builder: StringResourcesFileBuilder.() -> Unit): ResourceFile.StringResourcesFile {
     val fileBuilder = StringResourcesFileBuilder(identifier = identifier)
     builder.invoke(fileBuilder)
     return fileBuilder.build()

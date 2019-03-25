@@ -1,10 +1,5 @@
 package com.chrynan.resources
 
-data class BooleanResourcesFile(
-    val identifier: ResourceFileIdentifier,
-    val booleanResources: Set<BooleanResource>
-)
-
 data class BooleanResource(
     val identifier: ResourceIdentifier,
     val value: Boolean
@@ -31,10 +26,11 @@ class BooleanResourcesFileBuilder(private val identifier: ResourceFileIdentifier
         booleanResources += BooleanResource(identifier = NameResourceIdentifier(name = name), value = accessor.invoke())
     }
 
-    internal fun build() = BooleanResourcesFile(identifier = identifier, booleanResources = booleanResources)
+    internal fun build() =
+        ResourceFile.BooleanResourcesFile(identifier = identifier, booleanResources = booleanResources)
 }
 
-fun booleans(fileName: String, builder: BooleanResourcesFileBuilder.() -> Unit): BooleanResourcesFile {
+fun booleans(fileName: String, builder: BooleanResourcesFileBuilder.() -> Unit): ResourceFile.BooleanResourcesFile {
     val fileBuilder = BooleanResourcesFileBuilder(identifier = NameResourceFileIdentifier(name = fileName))
     builder.invoke(fileBuilder)
     return fileBuilder.build()
@@ -43,7 +39,7 @@ fun booleans(fileName: String, builder: BooleanResourcesFileBuilder.() -> Unit):
 fun booleans(
     identifier: ResourceFileIdentifier,
     builder: BooleanResourcesFileBuilder.() -> Unit
-): BooleanResourcesFile {
+): ResourceFile.BooleanResourcesFile {
     val fileBuilder = BooleanResourcesFileBuilder(identifier = identifier)
     builder.invoke(fileBuilder)
     return fileBuilder.build()
