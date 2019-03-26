@@ -99,23 +99,26 @@ data class NameResourceFileIdentifier(private val name: String) : ResourceFileId
 open class ResourceNotFoundException(resourceId: String, additionalMessage: String? = null) :
     RuntimeException("Resource not found with the resourceId = $resourceId. Additional Message = $additionalMessage")
 
-sealed class ResourceFile {
+class ResourceFileCreatorException(resourceFile: ResourceFile, additionalMessage: String? = null) :
+    RuntimeException("Resource file could not be created for resource file = $resourceFile. Additional Message = $additionalMessage")
+
+sealed class ResourceFile(val id: ResourceFileIdentifier) {
 
     data class StringResourcesFile(
         val identifier: ResourceFileIdentifier,
         val singleStringResources: Set<SingleStringResource>,
         val pluralStringResources: Set<PluralStringResource>,
         val stringArrayResources: Set<StringArrayResource>
-    ) : ResourceFile()
+    ) : ResourceFile(id = identifier)
 
     data class IntegerResourcesFile(
         val identifier: ResourceFileIdentifier,
         val integerResources: Set<IntegerResource>,
         val integerArrayResources: Set<IntegerArrayResource>
-    ) : ResourceFile()
+    ) : ResourceFile(id = identifier)
 
     data class BooleanResourcesFile(
         val identifier: ResourceFileIdentifier,
         val booleanResources: Set<BooleanResource>
-    ) : ResourceFile()
+    ) : ResourceFile(id = identifier)
 }
