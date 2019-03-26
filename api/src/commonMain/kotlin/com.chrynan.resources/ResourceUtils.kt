@@ -15,6 +15,75 @@ interface ResourceAccessor {
     val stringResourceAccessor: StringResourceAccessor
 
     val booleanResourceAccessor: BooleanResourceAccessor
+
+    val integerResourceAccessor: IntegerResourceAccessor
+
+    fun boolean(identifier: ResourceIdentifier) = lazy { booleanResourceAccessor.getBoolean(identifier = identifier) }
+
+    fun boolean(name: String) =
+        lazy { booleanResourceAccessor.getBoolean(identifier = NameResourceIdentifier(name = name)) }
+
+    fun integer(identifier: ResourceIdentifier) = lazy { integerResourceAccessor.getInteger(identifier = identifier) }
+
+    fun integer(name: String) =
+        lazy { integerResourceAccessor.getInteger(identifier = NameResourceIdentifier(name = name)) }
+
+    fun integerArray(identifier: ResourceIdentifier) =
+        lazy { integerResourceAccessor.getIntegerArray(identifier = identifier) }
+
+    fun integerArray(name: String) =
+        lazy { integerResourceAccessor.getIntegerArray(identifier = NameResourceIdentifier(name = name)) }
+
+    fun string(identifier: ResourceIdentifier) = lazy { stringResourceAccessor.getString(identifier = identifier) }
+
+    fun string(name: String) =
+        lazy { stringResourceAccessor.getString(identifier = NameResourceIdentifier(name = name)) }
+
+    fun string(identifier: ResourceIdentifier, vararg formatArgs: Any) =
+        lazy { stringResourceAccessor.getString(identifier = identifier, formatArgs = *formatArgs) }
+
+    fun string(name: String, vararg formatArgs: Any) =
+        lazy {
+            stringResourceAccessor.getString(
+                identifier = NameResourceIdentifier(name = name),
+                formatArgs = *formatArgs
+            )
+        }
+
+    fun quantityString(identifier: ResourceIdentifier, quantity: Int) =
+        lazy { stringResourceAccessor.getQuantityString(identifier = identifier, quantity = quantity) }
+
+    fun quantityString(name: String, quantity: Int) =
+        lazy {
+            stringResourceAccessor.getQuantityString(
+                identifier = NameResourceIdentifier(name = name),
+                quantity = quantity
+            )
+        }
+
+    fun quantityString(identifier: ResourceIdentifier, quantity: Int, vararg formatArgs: Any) =
+        lazy {
+            stringResourceAccessor.getQuantityString(
+                identifier = identifier,
+                quantity = quantity,
+                formatArgs = *formatArgs
+            )
+        }
+
+    fun quantityString(name: String, quantity: Int, vararg formatArgs: Any) =
+        lazy {
+            stringResourceAccessor.getQuantityString(
+                identifier = NameResourceIdentifier(name = name),
+                quantity = quantity,
+                formatArgs = *formatArgs
+            )
+        }
+
+    fun stringArray(identifier: ResourceIdentifier) =
+        lazy { stringResourceAccessor.getStringArray(identifier = identifier) }
+
+    fun stringArray(name: String) =
+        lazy { stringResourceAccessor.getStringArray(identifier = NameResourceIdentifier(name = name)) }
 }
 
 interface ResourceFileIdentifier {
