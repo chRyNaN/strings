@@ -102,6 +102,14 @@ class AndroidResourcesDocument private constructor(
         addElement(element = element)
     }
 
+    fun addColor(resource: ColorResource) {
+        // <color name="color_name">true</bool>
+        val element = document.createElement(TAG_NAME_COLOR)
+        element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
+        element.appendChild(document.createTextNode(resource.value.toString())) // TODO need to convert this to a hex string
+        addElement(element = element)
+    }
+
     private fun addElement(element: Element) {
         resourcesElement.appendChild(element)
     }
