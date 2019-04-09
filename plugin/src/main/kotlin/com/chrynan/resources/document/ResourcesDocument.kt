@@ -1,4 +1,6 @@
-package com.chrynan.resources
+package com.chrynan.resources.document
+
+import com.chrynan.resources.*
 
 interface ResourcesDocument {
 

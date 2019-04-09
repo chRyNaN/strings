@@ -1,5 +1,6 @@
-package com.chrynan.resources
+package com.chrynan.resources.document
 
+import com.chrynan.resources.*
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import javax.xml.parsers.DocumentBuilder
@@ -34,7 +35,10 @@ class AndroidResourcesDocument private constructor(
             // <resources>...</resources>
             val resources = document.createElement(TAG_NAME_RESOURCES)
             document.appendChild(resources)
-            return AndroidResourcesDocument(document = document, resourcesElement = resources)
+            return AndroidResourcesDocument(
+                document = document,
+                resourcesElement = resources
+            )
         }
     }
 

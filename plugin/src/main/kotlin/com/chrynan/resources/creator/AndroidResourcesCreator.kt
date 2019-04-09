@@ -1,5 +1,8 @@
-package com.chrynan.resources
+package com.chrynan.resources.creator
 
+import com.chrynan.resources.ResourceFile
+import com.chrynan.resources.ResourceFileCreatorException
+import com.chrynan.resources.document.AndroidResourcesDocument
 import java.io.File
 import javax.xml.parsers.DocumentBuilder
 import javax.xml.parsers.DocumentBuilderFactory
@@ -8,7 +11,8 @@ import javax.xml.transform.OutputKeys
 import javax.xml.transform.TransformerFactory
 import javax.xml.transform.stream.StreamResult
 
-class AndroidResourcesCreator(private val androidResourceLocation: String) : ResourcesCreator {
+class AndroidResourcesCreator(private val androidResourceLocation: String) :
+    ResourcesCreator {
 
     companion object {
 
@@ -79,7 +83,10 @@ class AndroidResourcesCreator(private val androidResourceLocation: String) : Res
 
             transformer.transform(source, result)
         } catch (e: Exception) {
-            throw ResourceFileCreatorException(resourceFile = resourceFile, additionalMessage = e.message)
+            throw ResourceFileCreatorException(
+                resourceFile = resourceFile,
+                additionalMessage = e.message
+            )
         }
     }
 }

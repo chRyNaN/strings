@@ -1,5 +1,6 @@
 package com.chrynan.resources
 
+import com.chrynan.resources.creator.AndroidResourcesCreator
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
@@ -14,7 +15,11 @@ class CreateResourcesTask : DefaultTask() {
     var integers: Set<ResourceFile.IntegerResourcesFile> = emptySet()
     var colors: Set<ResourceFile.ColorResourcesFile> = emptySet()
 
-    private val androidResourcesCreator by lazy { AndroidResourcesCreator(androidResourceLocation = androidResourceLocation) }
+    private val androidResourcesCreator by lazy {
+        AndroidResourcesCreator(
+            androidResourceLocation = androidResourceLocation
+        )
+    }
 
     @TaskAction
     fun createResources() {

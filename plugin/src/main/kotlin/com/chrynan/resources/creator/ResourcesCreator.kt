@@ -1,4 +1,6 @@
-package com.chrynan.resources
+package com.chrynan.resources.creator
+
+import com.chrynan.resources.ResourceFile
 
 interface ResourcesCreator {
 
