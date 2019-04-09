@@ -8,7 +8,7 @@ import javax.xml.transform.dom.DOMSource
 class AndroidResourcesDocument private constructor(
     private val document: Document,
     private val resourcesElement: Element
-) {
+) : ResourcesDocument {
 
     companion object {
 
@@ -41,7 +41,7 @@ class AndroidResourcesDocument private constructor(
     val source: DOMSource
         get() = DOMSource(document)
 
-    fun addBoolean(resource: BooleanResource) {
+    override fun addBoolean(resource: BooleanResource) {
         // <bool name="boolean_name">true</bool>
         val element = document.createElement(TAG_NAME_BOOLEAN)
         element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
@@ -49,7 +49,7 @@ class AndroidResourcesDocument private constructor(
         addElement(element = element)
     }
 
-    fun addInteger(resource: IntegerResource) {
+    override fun addInteger(resource: IntegerResource) {
         // <integer name="integer_name">0</integer>
         val element = document.createElement(TAG_NAME_INTEGER)
         element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
@@ -57,7 +57,7 @@ class AndroidResourcesDocument private constructor(
         addElement(element = element)
     }
 
-    fun addIntegerArray(resource: IntegerArrayResource) {
+    override fun addIntegerArray(resource: IntegerArrayResource) {
         // <integer-array name="integer_array_name"><item>0</item><item>1</item></integer-array>
         val element = document.createElement(TAG_NAME_INTEGER_ARRAY)
         element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
@@ -69,7 +69,7 @@ class AndroidResourcesDocument private constructor(
         addElement(element = element)
     }
 
-    fun addString(resource: SingleStringResource) {
+    override fun addString(resource: SingleStringResource) {
         // <string name="string_name">Some Text Value</string>
         val element = document.createElement(TAG_NAME_STRING)
         element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
@@ -77,7 +77,7 @@ class AndroidResourcesDocument private constructor(
         addElement(element = element)
     }
 
-    fun addStringArray(resource: StringArrayResource) {
+    override fun addStringArray(resource: StringArrayResource) {
         // <string-array name="string_array_name"><item>Some Text</item><item>Some Other Text</item></string-array>
         val element = document.createElement(TAG_NAME_STRING_ARRAY)
         element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
@@ -89,7 +89,7 @@ class AndroidResourcesDocument private constructor(
         addElement(element = element)
     }
 
-    fun addPluralString(resource: PluralStringResource) {
+    override fun addPluralString(resource: PluralStringResource) {
         // <plurals name="plurals_name"><item quantity="one">One Text</item><item quantity="two">Two Text</item></plurals>
         val element = document.createElement(TAG_NAME_PLURALS)
         element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
@@ -102,7 +102,7 @@ class AndroidResourcesDocument private constructor(
         addElement(element = element)
     }
 
-    fun addColor(resource: ColorResource) {
+    override fun addColor(resource: ColorResource) {
         // <color name="color_name">true</bool>
         val element = document.createElement(TAG_NAME_COLOR)
         element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)

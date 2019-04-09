@@ -8,7 +8,7 @@ import javax.xml.transform.OutputKeys
 import javax.xml.transform.TransformerFactory
 import javax.xml.transform.stream.StreamResult
 
-class AndroidResourcesCreator(private val androidResourceLocation: String) {
+class AndroidResourcesCreator(private val androidResourceLocation: String) : ResourcesCreator {
 
     companion object {
 
@@ -25,7 +25,10 @@ class AndroidResourcesCreator(private val androidResourceLocation: String) {
         }
     }
 
-    fun createStringResourceFile(resourceFile: ResourceFile.StringResourcesFile) {
+    private val ResourceFile.outputFile: File
+        get() = File("$androidResourceLocation${File.separator}$id.$XML_FILE_SUFFIX")
+
+    override fun createStringResourceFile(resourceFile: ResourceFile.StringResourcesFile) {
         val document = AndroidResourcesDocument.newInstance(documentBuilder = documentBuilder)
 
         resourceFile.apply {
@@ -37,7 +40,7 @@ class AndroidResourcesCreator(private val androidResourceLocation: String) {
         document.writeToFile(resourceFile = resourceFile)
     }
 
-    fun createBooleanResourceFile(resourceFile: ResourceFile.BooleanResourcesFile) {
+    override fun createBooleanResourceFile(resourceFile: ResourceFile.BooleanResourcesFile) {
         val document = AndroidResourcesDocument.newInstance(documentBuilder = documentBuilder)
 
         resourceFile.booleanResources.forEach(document::addBoolean)
@@ -45,7 +48,7 @@ class AndroidResourcesCreator(private val androidResourceLocation: String) {
         document.writeToFile(resourceFile = resourceFile)
     }
 
-    fun createIntegerResourceFile(resourceFile: ResourceFile.IntegerResourcesFile) {
+    override fun createIntegerResourceFile(resourceFile: ResourceFile.IntegerResourcesFile) {
         val document = AndroidResourcesDocument.newInstance(documentBuilder = documentBuilder)
 
         resourceFile.integerResources.forEach(document::addInteger)
@@ -54,8 +57,13 @@ class AndroidResourcesCreator(private val androidResourceLocation: String) {
         document.writeToFile(resourceFile = resourceFile)
     }
 
-    private val ResourceFile.outputFile: File
-        get() = File("$androidResourceLocation${File.separator}$id.$XML_FILE_SUFFIX")
+    override fun createColorResourceFile(resourceFile: ResourceFile.ColorResourcesFile) {
+        val document = AndroidResourcesDocument.newInstance(documentBuilder = documentBuilder)
+
+        resourceFile.colorResources.forEach(document::addColor)
+
+        document.writeToFile(resourceFile = resourceFile)
+    }
 
     private fun AndroidResourcesDocument.writeToFile(resourceFile: ResourceFile) {
         try {

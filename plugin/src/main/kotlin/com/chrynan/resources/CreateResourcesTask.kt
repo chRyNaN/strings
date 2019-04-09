@@ -12,6 +12,7 @@ class CreateResourcesTask : DefaultTask() {
     var strings: Set<ResourceFile.StringResourcesFile> = emptySet()
     var booleans: Set<ResourceFile.BooleanResourcesFile> = emptySet()
     var integers: Set<ResourceFile.IntegerResourcesFile> = emptySet()
+    var colors: Set<ResourceFile.ColorResourcesFile> = emptySet()
 
     private val androidResourcesCreator by lazy { AndroidResourcesCreator(androidResourceLocation = androidResourceLocation) }
 
@@ -20,5 +21,6 @@ class CreateResourcesTask : DefaultTask() {
         strings.forEach(androidResourcesCreator::createStringResourceFile)
         booleans.forEach(androidResourcesCreator::createBooleanResourceFile)
         integers.forEach(androidResourcesCreator::createIntegerResourceFile)
+        colors.forEach(androidResourcesCreator::createColorResourceFile)
     }
 }
