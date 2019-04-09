@@ -9,4 +9,6 @@ class AndroidResourceAccessor(appContext: Context) : ResourceAccessor {
     override val booleanResourceAccessor = AndroidBooleanResourceAccessor(appContext = appContext)
 
     override val integerResourceAccessor = AndroidIntegerResourceAccessor(appContext = appContext)
+
+    override val colorResourceAccessor = AndroidColorResourceAccessor(appContext = appContext)
 }

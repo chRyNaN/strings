@@ -18,6 +18,8 @@ interface ResourceAccessor {
 
     val integerResourceAccessor: IntegerResourceAccessor
 
+    val colorResourceAccessor: ColorResourceAccessor
+
     fun boolean(identifier: ResourceIdentifier) = lazy { booleanResourceAccessor.getBoolean(identifier = identifier) }
 
     fun boolean(name: String) =
@@ -84,6 +86,10 @@ interface ResourceAccessor {
 
     fun stringArray(name: String) =
         lazy { stringResourceAccessor.getStringArray(identifier = NameResourceIdentifier(name = name)) }
+
+    fun color(identifier: ResourceIdentifier) = lazy { colorResourceAccessor.getColor(identifier = identifier) }
+
+    fun color(name: String) = lazy { colorResourceAccessor.getColor(identifier = NameResourceIdentifier(name = name)) }
 }
 
 interface ResourceFileIdentifier {
