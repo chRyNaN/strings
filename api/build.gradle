@@ -43,7 +43,7 @@ kotlin {
 
         fromPreset(iOSTarget, 'ios') {
             binaries {
-                framework('strings')
+                framework('resources')
             }
         }
 
@@ -97,7 +97,7 @@ configurations {
 task packForXCode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
     final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
-    final def framework = kotlin.targets.ios.binaries.getFramework("strings", mode)
+    final def framework = kotlin.targets.ios.binaries.getFramework("resources", mode)
 
     inputs.property "mode", mode
     dependsOn framework.linkTask
