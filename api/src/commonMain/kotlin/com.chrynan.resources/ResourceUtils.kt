@@ -127,4 +127,9 @@ sealed class ResourceFile(val id: ResourceFileIdentifier) {
         val identifier: ResourceFileIdentifier,
         val booleanResources: Set<BooleanResource>
     ) : ResourceFile(id = identifier)
+
+    data class ColorResourcesFile(
+        val identifier: ResourceFileIdentifier,
+        val colorResources: Set<ColorResource>
+    ) : ResourceFile(id = identifier)
 }
