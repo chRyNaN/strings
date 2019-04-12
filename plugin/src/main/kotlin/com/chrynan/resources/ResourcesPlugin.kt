@@ -17,5 +17,7 @@ class ResourcesPlugin : Plugin<Project> {
             it.integers = resourcesExtension.integers
             it.strings = resourcesExtension.strings
         }
+
+        project.task("assemble").dependsOn("createResources")
     }
 }
