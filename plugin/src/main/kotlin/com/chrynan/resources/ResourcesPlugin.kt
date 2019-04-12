@@ -5,10 +5,16 @@ import org.gradle.api.Project
 
 class ResourcesPlugin : Plugin<Project> {
 
-    override fun apply(project: Project) {
-        val resourcesExtension = project.extensions.create("resources", ResourcesExtension::class.java)
+    companion object {
 
-        project.tasks.create("createResources", CreateResourcesTask::class.java) {
+        private const val TASK_NAME = "createResources"
+        private const val EXTENSION_NAME = "resources"
+    }
+
+    override fun apply(project: Project) {
+        val resourcesExtension = project.extensions.create(EXTENSION_NAME, ResourcesExtension::class.java)
+
+        project.tasks.create(TASK_NAME, CreateResourcesTask::class.java) {
             it.androidResourceLocation = resourcesExtension.androidResourceLocation
             it.iosResourceLocation = resourcesExtension.iosResourceLocation
             it.commonGeneratedSourceLocation = resourcesExtension.commonGeneratedSourceLocation
@@ -18,6 +24,6 @@ class ResourcesPlugin : Plugin<Project> {
             it.strings = resourcesExtension.strings
         }
 
-        project.task("assemble").dependsOn("createResources")
+        project.task("assemble").dependsOn(TASK_NAME)
     }
 }
