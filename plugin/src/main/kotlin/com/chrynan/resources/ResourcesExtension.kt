@@ -1,6 +1,7 @@
 package com.chrynan.resources
 
-data class ResourcesExtension(
+// NOTE: Needs to be open for Gradle
+open class ResourcesExtension(
     var androidResourceLocation: String,
     var iosResourceLocation: String,
     var commonGeneratedSourceLocation: String,

@@ -1,14 +1,13 @@
 apply plugin: 'org.jetbrains.kotlin.jvm'
 
-group 'com.chrynan.resources.plugin'
-
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group 'com.chrynan.resources.plugin'
 version rootProject.libraryVersion
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
     implementation gradleApi()
     implementation localGroovy()
@@ -24,4 +23,16 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.chrynan'
+            artifactId = 'resources'
+            version = '0.1.0'
+
+            from components.java
+        }
+    }
 }
