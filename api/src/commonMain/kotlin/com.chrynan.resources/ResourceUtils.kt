@@ -159,4 +159,9 @@ sealed class ResourceFile(val id: ResourceFileIdentifier) {
         val identifier: ResourceFileIdentifier,
         val dimensionResources: Set<DimensionResource>
     ) : ResourceFile(id = identifier)
+
+    data class FloatResourcesFile(
+        val identifier: ResourceFileIdentifier,
+        val floatResources: Set<FloatResource>
+    ) : ResourceFile(id = identifier)
 }
