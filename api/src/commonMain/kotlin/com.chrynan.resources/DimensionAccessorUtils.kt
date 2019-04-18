@@ -28,7 +28,7 @@ object Dimensions {
 
 interface DimensionResourceAccessor {
 
-    fun getPxDimension(identifier: ResourceIdentifier): Pixels // TODO return the appropriate dimension values
+    fun getPxDimension(identifier: ResourceIdentifier): Pixels
 
     fun getPtDimension(identifier: ResourceIdentifier): PointPixels
 
