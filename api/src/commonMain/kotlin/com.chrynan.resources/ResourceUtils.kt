@@ -22,6 +22,8 @@ interface ResourceAccessor {
 
     val dimensionResourceAccessor: DimensionResourceAccessor
 
+    val floatResourceAccessor: FloatResourceAccessor
+
     fun boolean(identifier: ResourceIdentifier) = lazy { booleanResourceAccessor.getBoolean(identifier = identifier) }
 
     fun boolean(name: String) =
@@ -112,6 +114,11 @@ interface ResourceAccessor {
 
     fun dp(name: String) =
         lazy { dimensionResourceAccessor.getDpDimension(identifier = NameResourceIdentifier(name = name)) }
+
+    fun float(identifier: ResourceIdentifier) = lazy { floatResourceAccessor.getFloat(identifier = identifier) }
+
+    fun float(name: String) =
+        lazy { floatResourceAccessor.getFloat(identifier = NameResourceIdentifier(name = name)) }
 }
 
 interface ResourceFileIdentifier {

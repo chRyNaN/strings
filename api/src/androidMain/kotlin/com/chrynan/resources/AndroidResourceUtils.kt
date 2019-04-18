@@ -13,4 +13,6 @@ class AndroidResourceAccessor(appContext: Context) : ResourceAccessor {
     override val colorResourceAccessor = AndroidColorResourceAccessor(appContext = appContext)
 
     override val dimensionResourceAccessor = AndroidDimensionResourceAccessor(appContext = appContext)
+
+    override val floatResourceAccessor = AndroidFloatResourceAccessor(appContext = appContext)
 }
