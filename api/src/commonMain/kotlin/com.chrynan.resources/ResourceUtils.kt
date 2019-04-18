@@ -20,6 +20,8 @@ interface ResourceAccessor {
 
     val colorResourceAccessor: ColorResourceAccessor
 
+    val dimensionResourceAccessor: DimensionResourceAccessor
+
     fun boolean(identifier: ResourceIdentifier) = lazy { booleanResourceAccessor.getBoolean(identifier = identifier) }
 
     fun boolean(name: String) =
@@ -90,6 +92,26 @@ interface ResourceAccessor {
     fun color(identifier: ResourceIdentifier) = lazy { colorResourceAccessor.getColor(identifier = identifier) }
 
     fun color(name: String) = lazy { colorResourceAccessor.getColor(identifier = NameResourceIdentifier(name = name)) }
+
+    fun px(identifier: ResourceIdentifier) = lazy { dimensionResourceAccessor.getPxDimension(identifier = identifier) }
+
+    fun px(name: String) =
+        lazy { dimensionResourceAccessor.getPxDimension(identifier = NameResourceIdentifier(name = name)) }
+
+    fun pt(identifier: ResourceIdentifier) = lazy { dimensionResourceAccessor.getPtDimension(identifier = identifier) }
+
+    fun pt(name: String) =
+        lazy { dimensionResourceAccessor.getPtDimension(identifier = NameResourceIdentifier(name = name)) }
+
+    fun sp(identifier: ResourceIdentifier) = lazy { dimensionResourceAccessor.getSpDimension(identifier = identifier) }
+
+    fun sp(name: String) =
+        lazy { dimensionResourceAccessor.getSpDimension(identifier = NameResourceIdentifier(name = name)) }
+
+    fun dp(identifier: ResourceIdentifier) = lazy { dimensionResourceAccessor.getDpDimension(identifier = identifier) }
+
+    fun dp(name: String) =
+        lazy { dimensionResourceAccessor.getDpDimension(identifier = NameResourceIdentifier(name = name)) }
 }
 
 interface ResourceFileIdentifier {
@@ -131,5 +153,10 @@ sealed class ResourceFile(val id: ResourceFileIdentifier) {
     data class ColorResourcesFile(
         val identifier: ResourceFileIdentifier,
         val colorResources: Set<ColorResource>
+    ) : ResourceFile(id = identifier)
+
+    data class DimensionResourcesFile(
+        val identifier: ResourceFileIdentifier,
+        val dimensionResources: Set<DimensionResource>
     ) : ResourceFile(id = identifier)
 }
