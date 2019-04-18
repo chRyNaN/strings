@@ -30,9 +30,12 @@ class AndroidResourcesDocument private constructor(
         private const val TAG_NAME_PLURALS_ITEM = "item"
         private const val TAG_NAME_STRING_ARRAY = "string-array"
         private const val TAG_NAME_STRING_ARRAY_ITEM = "item"
+        private const val TAG_NAME_FLOAT = "item"
 
         private const val ATTRIBUTE_NAME = "name"
         private const val ATTRIBUTE_QUANTITY = "quantity"
+        private const val ATTRIBUTE_TYPE = "type"
+        private const val ATTRIBUTE_FORMAT = "format"
 
         fun newInstance(documentBuilder: DocumentBuilder): AndroidResourcesDocument {
             val document = documentBuilder.newDocument()
@@ -135,6 +138,16 @@ class AndroidResourcesDocument private constructor(
             element.appendChild(document.createTextNode(value))
             addElement(element = element)
         }
+    }
+
+    override fun addFloat(resource: FloatResource) {
+        // <item name="float_name" type="dimen" format="float">1.0</item>
+        val element = document.createElement(TAG_NAME_FLOAT)
+        element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
+        element.setAttribute(ATTRIBUTE_TYPE, "dimen")
+        element.setAttribute(ATTRIBUTE_FORMAT, "float")
+        element.appendChild(document.createTextNode(resource.value.toString()))
+        addElement(element = element)
     }
 
     private fun addElement(element: Element) {

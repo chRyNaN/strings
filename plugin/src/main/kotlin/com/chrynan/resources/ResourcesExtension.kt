@@ -9,5 +9,6 @@ open class ResourcesExtension(
     var booleans: Set<ResourceFile.BooleanResourcesFile> = emptySet(),
     var integers: Set<ResourceFile.IntegerResourcesFile> = emptySet(),
     var colors: Set<ResourceFile.ColorResourcesFile> = emptySet(),
-    var dimensions: Set<ResourceFile.DimensionResourcesFile> = emptySet()
+    var dimensions: Set<ResourceFile.DimensionResourcesFile> = emptySet(),
+    val floats: Set<ResourceFile.FloatResourcesFile> = emptySet()
 )

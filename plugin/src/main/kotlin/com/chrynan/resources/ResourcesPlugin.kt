@@ -23,6 +23,7 @@ class ResourcesPlugin : Plugin<Project> {
             it.integers = resourcesExtension.integers
             it.strings = resourcesExtension.strings
             it.dimensions = resourcesExtension.dimensions
+            it.floats = resourcesExtension.floats
         }
 
         project.task("assemble").dependsOn(TASK_NAME)

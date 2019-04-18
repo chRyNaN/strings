@@ -19,4 +19,6 @@ interface ResourcesDocument {
     fun addColor(resource: ColorResource)
 
     fun addDimension(resource: DimensionResource)
+
+    fun addFloat(resource: FloatResource)
 }

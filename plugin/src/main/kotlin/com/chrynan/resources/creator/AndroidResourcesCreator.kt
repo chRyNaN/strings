@@ -77,6 +77,14 @@ class AndroidResourcesCreator(private val androidResourceLocation: String) :
         document.writeToFile(resourceFile = resourceFile)
     }
 
+    override fun createFloatResourceFile(resourceFile: ResourceFile.FloatResourcesFile) {
+        val document = AndroidResourcesDocument.newInstance(documentBuilder = documentBuilder)
+
+        resourceFile.floatResources.forEach(document::addFloat)
+
+        document.writeToFile(resourceFile = resourceFile)
+    }
+
     private fun AndroidResourcesDocument.writeToFile(resourceFile: ResourceFile) {
         try {
             resourceFile.outputFile.createNewFile()
