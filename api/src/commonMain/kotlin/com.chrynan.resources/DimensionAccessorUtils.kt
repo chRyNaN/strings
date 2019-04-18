@@ -1,5 +1,10 @@
 package com.chrynan.resources
 
+import com.chrynan.pixel.DependencyIndependentPixels
+import com.chrynan.pixel.Pixels
+import com.chrynan.pixel.PointPixels
+import com.chrynan.pixel.ScaledPixels
+
 object Dimensions {
 
     lateinit var accessor: DimensionResourceAccessor
@@ -23,13 +28,13 @@ object Dimensions {
 
 interface DimensionResourceAccessor {
 
-    fun getPxDimension(identifier: ResourceIdentifier): Float // TODO return the appropriate dimension values
+    fun getPxDimension(identifier: ResourceIdentifier): Pixels // TODO return the appropriate dimension values
 
-    fun getPtDimension(identifier: ResourceIdentifier): Float
+    fun getPtDimension(identifier: ResourceIdentifier): PointPixels
 
-    fun getSpDimension(identifier: ResourceIdentifier): Float
+    fun getSpDimension(identifier: ResourceIdentifier): ScaledPixels
 
-    fun getDpDimension(identifier: ResourceIdentifier): Float
+    fun getDpDimension(identifier: ResourceIdentifier): DependencyIndependentPixels
 }
 
 class DimensionResourceNotFoundException(resourceId: String) : ResourceNotFoundException(resourceId = resourceId)
