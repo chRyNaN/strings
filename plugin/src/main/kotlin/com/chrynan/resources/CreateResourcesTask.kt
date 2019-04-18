@@ -14,12 +14,9 @@ class CreateResourcesTask : DefaultTask() {
     var booleans: Set<ResourceFile.BooleanResourcesFile> = emptySet()
     var integers: Set<ResourceFile.IntegerResourcesFile> = emptySet()
     var colors: Set<ResourceFile.ColorResourcesFile> = emptySet()
+    var dimensions: Set<ResourceFile.DimensionResourcesFile> = emptySet()
 
-    private val androidResourcesCreator by lazy {
-        AndroidResourcesCreator(
-            androidResourceLocation = androidResourceLocation
-        )
-    }
+    private val androidResourcesCreator by lazy { AndroidResourcesCreator(androidResourceLocation = androidResourceLocation) }
 
     @TaskAction
     fun createResources() {

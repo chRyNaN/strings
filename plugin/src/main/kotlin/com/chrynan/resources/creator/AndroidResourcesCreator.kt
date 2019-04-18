@@ -69,6 +69,14 @@ class AndroidResourcesCreator(private val androidResourceLocation: String) :
         document.writeToFile(resourceFile = resourceFile)
     }
 
+    override fun createDimensionResourceFile(resourceFile: ResourceFile.DimensionResourcesFile) {
+        val document = AndroidResourcesDocument.newInstance(documentBuilder = documentBuilder)
+
+        resourceFile.dimensionResources.forEach(document::addDimension)
+
+        document.writeToFile(resourceFile = resourceFile)
+    }
+
     private fun AndroidResourcesDocument.writeToFile(resourceFile: ResourceFile) {
         try {
             resourceFile.outputFile.createNewFile()

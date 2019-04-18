@@ -11,4 +11,6 @@ interface ResourcesCreator {
     fun createIntegerResourceFile(resourceFile: ResourceFile.IntegerResourcesFile)
 
     fun createColorResourceFile(resourceFile: ResourceFile.ColorResourcesFile)
+
+    fun createDimensionResourceFile(resourceFile: ResourceFile.DimensionResourcesFile)
 }

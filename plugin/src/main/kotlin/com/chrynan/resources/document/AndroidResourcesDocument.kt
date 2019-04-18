@@ -1,5 +1,9 @@
 package com.chrynan.resources.document
 
+import com.chrynan.pixel.DependencyIndependentPixels
+import com.chrynan.pixel.Pixels
+import com.chrynan.pixel.PointPixels
+import com.chrynan.pixel.ScaledPixels
 import com.chrynan.resources.*
 import org.w3c.dom.Document
 import org.w3c.dom.Element
@@ -112,6 +116,25 @@ class AndroidResourcesDocument private constructor(
         element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
         element.appendChild(document.createTextNode(resource.value.toString())) // TODO need to convert this to a hex string
         addElement(element = element)
+    }
+
+    override fun addDimension(resource: DimensionResource) {
+        // <dimen name="dimension_name">12dp</dimen>
+        val value = when (val v = resource.value) {
+            is Pixels -> "${v}px"
+            is DependencyIndependentPixels -> "${v}dp"
+            is ScaledPixels -> "${v}sp"
+            is PointPixels -> "${v}pt"
+            else -> null
+        }
+
+        value?.let {
+            val element = document.createElement(TAG_NAME_DIMEN)
+            element.setAttribute(ATTRIBUTE_NAME, resource.identifier.id)
+
+            element.appendChild(document.createTextNode(value))
+            addElement(element = element)
+        }
     }
 
     private fun addElement(element: Element) {

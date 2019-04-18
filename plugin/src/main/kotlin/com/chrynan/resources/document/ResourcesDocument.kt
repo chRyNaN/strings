@@ -17,4 +17,6 @@ interface ResourcesDocument {
     fun addPluralString(resource: PluralStringResource)
 
     fun addColor(resource: ColorResource)
+
+    fun addDimension(resource: DimensionResource)
 }
