@@ -12,10 +12,10 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
 
-    implementation project(':api')
+    api project(':api')
 
-    implementation 'com.chrynan:colors:0.1.0'
-    implementation 'com.chrynan:pixel:0.3.0'
+    api 'com.chrynan:colors:0.1.0'
+    api 'com.chrynan:pixel:0.3.0'
 }
 
 compileKotlin {
