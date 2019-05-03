@@ -11,6 +11,6 @@ rootProject.name = 'resources'
 
 include ':api'
 include ':plugin'
+include ':creator'
 
 enableFeaturePreview('GRADLE_METADATA')
-
