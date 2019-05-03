@@ -1,25 +1,5 @@
 package com.chrynan.resources
 
-data class SingleStringResource(
-    val identifier: ResourceIdentifier,
-    val value: String
-)
-
-data class PluralStringResource(
-    val identifier: ResourceIdentifier,
-    val quantities: Set<QuantityStringResource>
-)
-
-data class StringArrayResource(
-    val identifier: ResourceIdentifier,
-    val values: List<String>
-)
-
-data class QuantityStringResource(
-    val value: String,
-    val quantity: Quantity
-)
-
 class StringResourcesFileBuilder(private val identifier: ResourceFileIdentifier) {
 
     private val singleStringResources = mutableSetOf<SingleStringResource>()
@@ -114,16 +94,6 @@ class StringArrayBuilder(private val identifier: ResourceIdentifier) {
     }
 
     internal fun build() = StringArrayResource(identifier = identifier, values = arrayValues)
-}
-
-enum class Quantity {
-
-    ZERO,
-    ONE,
-    TWO,
-    FEW,
-    MANY,
-    OTHER
 }
 
 fun strings(fileName: String, builder: StringResourcesFileBuilder.() -> Unit): ResourceFile.StringResourcesFile {

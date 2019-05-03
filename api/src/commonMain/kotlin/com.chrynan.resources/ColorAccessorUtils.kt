@@ -2,6 +2,11 @@ package com.chrynan.resources
 
 import com.chrynan.colors.Color
 
+data class ColorResource(
+    val identifier: ResourceIdentifier,
+    val value: Color
+)
+
 object Colors {
 
     lateinit var accessor: ColorResourceAccessor

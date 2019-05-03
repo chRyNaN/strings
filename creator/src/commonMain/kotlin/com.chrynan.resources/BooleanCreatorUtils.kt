@@ -1,10 +1,5 @@
 package com.chrynan.resources
 
-data class BooleanResource(
-    val identifier: ResourceIdentifier,
-    val value: Boolean
-)
-
 class BooleanResourcesFileBuilder(private val identifier: ResourceFileIdentifier) {
 
     private val booleanResources = mutableSetOf<BooleanResource>()

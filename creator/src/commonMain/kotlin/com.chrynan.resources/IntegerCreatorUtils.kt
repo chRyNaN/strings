@@ -1,15 +1,5 @@
 package com.chrynan.resources
 
-data class IntegerResource(
-    val identifier: ResourceIdentifier,
-    val value: Int
-)
-
-data class IntegerArrayResource(
-    val identifier: ResourceIdentifier,
-    val values: List<Int>
-)
-
 class IntegerResourcesFileBuilder(private val identifier: ResourceFileIdentifier) {
 
     private val integerResources = mutableSetOf<IntegerResource>()

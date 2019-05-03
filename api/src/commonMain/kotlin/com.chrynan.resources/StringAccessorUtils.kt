@@ -1,5 +1,35 @@
 package com.chrynan.resources
 
+data class SingleStringResource(
+    val identifier: ResourceIdentifier,
+    val value: String
+)
+
+data class PluralStringResource(
+    val identifier: ResourceIdentifier,
+    val quantities: Set<QuantityStringResource>
+)
+
+data class StringArrayResource(
+    val identifier: ResourceIdentifier,
+    val values: List<String>
+)
+
+data class QuantityStringResource(
+    val value: String,
+    val quantity: Quantity
+)
+
+enum class Quantity {
+
+    ZERO,
+    ONE,
+    TWO,
+    FEW,
+    MANY,
+    OTHER
+}
+
 object Strings {
 
     lateinit var accessor: StringResourceAccessor

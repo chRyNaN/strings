@@ -58,6 +58,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+                api project(":api")
                 api 'com.chrynan:colors:0.1.0'
                 api 'com.chrynan:pixel:0.3.0'
             }

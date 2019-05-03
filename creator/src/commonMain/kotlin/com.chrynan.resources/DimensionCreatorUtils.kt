@@ -2,11 +2,6 @@ package com.chrynan.resources
 
 import com.chrynan.pixel.*
 
-data class DimensionResource(
-    val identifier: ResourceIdentifier,
-    val value: ScreenDimensionUnit
-)
-
 class DimensionResourcesFileBuilder(private val identifier: ResourceFileIdentifier) {
 
     private val dimensionResources = mutableSetOf<DimensionResource>()

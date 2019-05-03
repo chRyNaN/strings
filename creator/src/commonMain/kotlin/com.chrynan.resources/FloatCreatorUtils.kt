@@ -1,10 +1,5 @@
 package com.chrynan.resources
 
-data class FloatResource(
-    val identifier: ResourceIdentifier,
-    val value: Float
-)
-
 class FloatResourcesFileBuilder(private val identifier: ResourceFileIdentifier) {
 
     private val floatResources = mutableSetOf<FloatResource>()

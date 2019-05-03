@@ -1,5 +1,15 @@
 package com.chrynan.resources
 
+data class IntegerResource(
+    val identifier: ResourceIdentifier,
+    val value: Int
+)
+
+data class IntegerArrayResource(
+    val identifier: ResourceIdentifier,
+    val values: List<Int>
+)
+
 interface IntegerResourceAccessor {
 
     fun getInteger(identifier: ResourceIdentifier): Int

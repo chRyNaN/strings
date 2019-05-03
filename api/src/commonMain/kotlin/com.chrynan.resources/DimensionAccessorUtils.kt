@@ -1,9 +1,11 @@
 package com.chrynan.resources
 
-import com.chrynan.pixel.DependencyIndependentPixels
-import com.chrynan.pixel.Pixels
-import com.chrynan.pixel.PointPixels
-import com.chrynan.pixel.ScaledPixels
+import com.chrynan.pixel.*
+
+data class DimensionResource(
+    val identifier: ResourceIdentifier,
+    val value: ScreenDimensionUnit
+)
 
 object Dimensions {
 

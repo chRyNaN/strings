@@ -2,11 +2,6 @@ package com.chrynan.resources
 
 import com.chrynan.colors.Color
 
-data class ColorResource(
-    val identifier: ResourceIdentifier,
-    val value: Color
-)
-
 class ColorResourcesFileBuilder(private val identifier: ResourceFileIdentifier) {
 
     private val colorResources = mutableSetOf<ColorResource>()

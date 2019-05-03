@@ -1,5 +1,10 @@
 package com.chrynan.resources
 
+data class FloatResource(
+    val identifier: ResourceIdentifier,
+    val value: Float
+)
+
 object Floats {
 
     lateinit var accessor: FloatResourceAccessor

@@ -1,5 +1,10 @@
 package com.chrynan.resources
 
+data class BooleanResource(
+    val identifier: ResourceIdentifier,
+    val value: Boolean
+)
+
 object Booleans {
 
     lateinit var accessor: BooleanResourceAccessor
