@@ -12,7 +12,7 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
 
-    api project(':api')
+    api project(':accessor')
 
     api 'com.chrynan:colors:0.1.0'
     api 'com.chrynan:pixel:0.3.0'

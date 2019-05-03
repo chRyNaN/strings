@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 
 apply plugin: 'com.android.library'
 
-group 'com.chrynan.resources.api'
+group 'com.chrynan.resources.accessor'
 version rootProject.libraryVersion
 
 android {
@@ -43,7 +43,7 @@ kotlin {
 
         fromPreset(iOSTarget, 'ios') {
             binaries {
-                framework('resources')
+                framework('accessor')
             }
         }
 
@@ -101,7 +101,7 @@ configurations {
 task packForXCode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
     final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
-    final def framework = kotlin.targets.ios.binaries.getFramework("resources", mode)
+    final def framework = kotlin.targets.ios.binaries.getFramework("accessor", mode)
 
     inputs.property "mode", mode
     dependsOn framework.linkTask

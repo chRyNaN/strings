@@ -9,7 +9,7 @@ pluginManagement {
 }
 rootProject.name = 'resources'
 
-include ':api'
+include ':accessor'
 include ':plugin'
 include ':creator'
 
