@@ -1,16 +1,7 @@
-pluginManagement {
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.id == "kotlin-multiplatform") {
-                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
-            }
-        }
-    }
-}
-rootProject.name = 'resources'
+rootProject.name = "resources"
 
-include ':accessor'
-include ':plugin'
-include ':creator'
+include ":accessor"
+include ":plugin"
+include ":creator"
 
-enableFeaturePreview('GRADLE_METADATA')
+enableFeaturePreview("GRADLE_METADATA")

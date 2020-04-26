@@ -1,21 +1,12 @@
 apply plugin: 'org.jetbrains.kotlin.jvm'
 
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
-
-group 'com.chrynan.resources.plugin'
+group rootProject.libraryGroup
 version rootProject.libraryVersion
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
-    implementation gradleApi()
-    implementation localGroovy()
-
     api project(':accessor')
-
-    api 'com.chrynan:colors:0.1.0'
-    api 'com.chrynan:pixel:0.3.0'
 }
 
 compileKotlin {
@@ -29,9 +20,9 @@ compileTestKotlin {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'com.chrynan'
-            artifactId = 'resources'
-            version = '0.1.0'
+            groupId = rootProject.libraryGroup
+            artifactId = 'strings'
+            version = rootProject.libraryVersion
 
             from components.java
         }
