@@ -9,10 +9,11 @@ fun StringAccessor.getStringOrNull(resourceID: StringResourceID, locale: Locale 
 
 fun StringAccessor.getDynamicStringOrNull(
     resourceID: StringResourceID,
-    locale: Locale = Locale.default
+    locale: Locale = Locale.default,
+    vararg arguments: Any
 ): kotlin.String? =
     try {
-        getDynamicString(resourceID = resourceID, locale = locale)
+        getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments)
     } catch (exception: StringResourceIDNotFoundException) {
         null
     }

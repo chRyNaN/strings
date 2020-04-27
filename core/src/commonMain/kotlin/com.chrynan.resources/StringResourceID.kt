@@ -1,3 +1,3 @@
 package com.chrynan.resources
 
-inline class StringResourceID(val name: kotlin.String)
+inline class StringResourceID(val name: String)
