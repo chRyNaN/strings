@@ -2,7 +2,7 @@ package com.chrynan.resources
 
 import kotlin.String
 
-object StringProvider : StringAccessor {
+object Strings : StringAccessor {
 
     lateinit var accessor: StringAccessor
 
