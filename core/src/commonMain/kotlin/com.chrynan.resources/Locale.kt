@@ -5,4 +5,10 @@ class Locale(
     val script: kotlin.String,
     val country: kotlin.String,
     val variant: kotlin.String
-)
+) {
+
+    companion object {
+
+        val default: Locale = TODO()
+    }
+}

@@ -12,6 +12,8 @@ kotlin {
         commonMain {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
+
+                api project(":core")
             }
         }
         jvmMain {
