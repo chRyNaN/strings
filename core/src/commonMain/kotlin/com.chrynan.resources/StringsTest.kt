@@ -3,8 +3,8 @@
 
 @file:StringGroup(
     name = "test", values = [
-        StringValue(value = "", locale = ""),
-        StringValue("")
+        StringGroupItem(value = "", locale = ""),
+        StringGroupItem("")
     ]
 )
 

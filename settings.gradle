@@ -2,6 +2,6 @@ rootProject.name = "resources"
 
 include ":accessor"
 include ":plugin"
-include ":creator"
+include ":core"
 
 enableFeaturePreview("GRADLE_METADATA")

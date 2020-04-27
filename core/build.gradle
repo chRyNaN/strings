@@ -29,16 +29,16 @@ configurations {
 publishing {
     publications {
         kotlinMultiplatform {
-            artifactId = "strings-creator"
+            artifactId = "strings-core"
         }
         jvm {
-            artifactId = "strings-creator-jvm"
+            artifactId = "strings-core-jvm"
         }
         js {
-            artifactId = "strings-creator-js"
+            artifactId = "strings-core-js"
         }
         metadata {
-            artifactId = "strings-creator-metadata"
+            artifactId = "strings-core-metadata"
         }
     }
 }
