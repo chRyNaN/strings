@@ -8,7 +8,7 @@ fun StringAccessor.getStringOrNull(resourceID: StringResourceID, locale: Locale 
     }
 
 fun StringAccessor.getDynamicStringOrNull(
-    resourceID: StringResourceID,
+    resourceID: DynamicStringResourceID,
     locale: Locale = Locale.default,
     vararg arguments: Any
 ): kotlin.String? =
@@ -18,7 +18,10 @@ fun StringAccessor.getDynamicStringOrNull(
         null
     }
 
-fun StringAccessor.getHtmlStringOrNull(resourceID: StringResourceID, locale: Locale = Locale.default): kotlin.String? =
+fun StringAccessor.getHtmlStringOrNull(
+    resourceID: HtmlStringResourceID,
+    locale: Locale = Locale.default
+): kotlin.String? =
     try {
         getHtmlString(resourceID = resourceID, locale = locale)
     } catch (exception: StringResourceIDNotFoundException) {
@@ -26,7 +29,7 @@ fun StringAccessor.getHtmlStringOrNull(resourceID: StringResourceID, locale: Loc
     }
 
 fun StringAccessor.getStringArrayOrNull(
-    resourceID: StringResourceID,
+    resourceID: StringArrayResourceID,
     locale: Locale = Locale.default
 ): Array<kotlin.String>? =
     try {
@@ -36,7 +39,7 @@ fun StringAccessor.getStringArrayOrNull(
     }
 
 fun StringAccessor.getStringArrayOrEmpty(
-    resourceID: StringResourceID,
+    resourceID: StringArrayResourceID,
     locale: Locale = Locale.default
 ): Array<kotlin.String> =
     try {
@@ -46,7 +49,7 @@ fun StringAccessor.getStringArrayOrEmpty(
     }
 
 fun StringAccessor.getPluralStringOrNull(
-    resourceID: StringResourceID,
+    resourceID: PluralStringResourceID,
     locale: Locale = Locale.default,
     quantity: Quantity,
     vararg arguments: Any

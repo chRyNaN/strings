@@ -5,17 +5,17 @@ interface StringAccessor {
     fun getString(resourceID: StringResourceID, locale: Locale = Locale.default): kotlin.String
 
     fun getDynamicString(
-        resourceID: StringResourceID,
+        resourceID: DynamicStringResourceID,
         locale: Locale = Locale.default,
         vararg arguments: Any
     ): kotlin.String
 
-    fun getHtmlString(resourceID: StringResourceID, locale: Locale = Locale.default): kotlin.String
+    fun getHtmlString(resourceID: HtmlStringResourceID, locale: Locale = Locale.default): kotlin.String
 
-    fun getStringArray(resourceID: StringResourceID, locale: Locale = Locale.default): Array<kotlin.String>
+    fun getStringArray(resourceID: StringArrayResourceID, locale: Locale = Locale.default): Array<kotlin.String>
 
     fun getPluralString(
-        resourceID: StringResourceID,
+        resourceID: PluralStringResourceID,
         locale: Locale = Locale.default,
         quantity: Quantity,
         vararg arguments: Any

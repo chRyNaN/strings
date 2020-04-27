@@ -9,17 +9,17 @@ object StringProvider : StringAccessor {
     override fun getString(resourceID: StringResourceID, locale: Locale): String =
         accessor.getString(resourceID = resourceID, locale = locale)
 
-    override fun getDynamicString(resourceID: StringResourceID, locale: Locale, vararg arguments: Any): String =
+    override fun getDynamicString(resourceID: DynamicStringResourceID, locale: Locale, vararg arguments: Any): String =
         accessor.getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments)
 
-    override fun getHtmlString(resourceID: StringResourceID, locale: Locale): String =
+    override fun getHtmlString(resourceID: HtmlStringResourceID, locale: Locale): String =
         accessor.getHtmlString(resourceID = resourceID, locale = locale)
 
-    override fun getStringArray(resourceID: StringResourceID, locale: Locale): Array<String> =
+    override fun getStringArray(resourceID: StringArrayResourceID, locale: Locale): Array<String> =
         accessor.getStringArray(resourceID = resourceID, locale = locale)
 
     override fun getPluralString(
-        resourceID: StringResourceID,
+        resourceID: PluralStringResourceID,
         locale: Locale,
         quantity: Quantity,
         vararg arguments: Any
