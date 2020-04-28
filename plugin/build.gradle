@@ -10,6 +10,7 @@ dependencies {
     implementation project(":annotation")
     implementation project(":accessor")
 
+    implementation "com.chrynan.logger:logger-core-jvm:1.2.1"
     implementation "com.chrynan.kotlin-writer:kotlin-writer:0.2.2"
     implementation "de.jensklingenberg:mpapt-runtime:0.8.4"
 }
