@@ -9,6 +9,7 @@ class Locale(
 
     companion object {
 
-        val default: Locale = TODO()
+        // TODO
+        val default: Locale = Locale("", "", "", "")
     }
 }

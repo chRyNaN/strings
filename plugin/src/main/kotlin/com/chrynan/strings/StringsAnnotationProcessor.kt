@@ -5,7 +5,7 @@ import de.jensklingenberg.mpapt.model.RoundEnvironment
 
 class StringsAnnotationProcessor: AbstractProcessor() {
 
-    override fun getSupportedAnnotationTypes(): Set<String> = setOf(
+    override fun getSupportedAnnotationTypes(): Set<kotlin.String> = setOf(
     )
 
     override fun process(roundEnvironment: RoundEnvironment) {

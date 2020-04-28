@@ -10,7 +10,6 @@ dependencies {
     implementation project(":annotation")
     implementation project(":accessor")
 
-    implementation "com.chrynan.kotlin-writer:kotlin-writer:0.2.1"
     implementation "de.jensklingenberg:mpapt-runtime:0.8.4"
 }
 

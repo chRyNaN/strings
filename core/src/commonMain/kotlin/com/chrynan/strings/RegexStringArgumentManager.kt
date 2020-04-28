@@ -9,10 +9,15 @@ class RegexStringArgumentManager : StringArgumentParser,
     }
 
     override fun parse(input: String): StringArgumentParser.Result {
-        TODO("Not yet implemented")
+        // TODO
+        return StringArgumentParser.Result(
+            input = "",
+            arguments = emptyList()
+        )
     }
 
     override fun format(input: String, values: List<StringArgumentFormatter.Value>): String {
-        TODO("Not yet implemented")
+        // TODO
+        return ""
     }
 }
