@@ -2,10 +2,10 @@ package com.chrynan.resources
 
 import kotlin.String
 
-class MapStringCache(
+class MapStringRepo(
     private val stringMap: Map<Key, String>,
     private val stringArrayMap: Map<Key, Array<String>>
-) : StringCache {
+) : StringRepo {
 
     override fun getStringValue(resourceID: ResourceID, locale: Locale): String {
         val key = Key(resourceID = resourceID, locale = locale)

@@ -12,7 +12,7 @@ class RegexStringArgumentManager : StringArgumentParser,
         TODO("Not yet implemented")
     }
 
-    override fun format(input: String, vararg values: StringArgumentFormatter.Value): String {
+    override fun format(input: String, values: List<StringArgumentFormatter.Value>): String {
         TODO("Not yet implemented")
     }
 }

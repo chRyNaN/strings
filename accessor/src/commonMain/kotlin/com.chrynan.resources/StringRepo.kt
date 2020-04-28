@@ -1,6 +1,6 @@
 package com.chrynan.resources
 
-interface StringCache {
+interface StringRepo {
 
     fun getStringValue(resourceID: ResourceID, locale: Locale): kotlin.String
 
