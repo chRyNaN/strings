@@ -6,7 +6,11 @@ version rootProject.libraryVersion
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
-    api project(':accessor')
+    implementation project(":core")
+    implementation project(":annotation")
+    implementation project(":accessor")
+
+    implementation "com.chrynan.kotlin-writer:kotlin-writer:0.2.1"
 }
 
 compileKotlin {
@@ -21,7 +25,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId = rootProject.libraryGroup
-            artifactId = 'strings'
+            artifactId = "strings-plugin"
             version = rootProject.libraryVersion
 
             from components.java
