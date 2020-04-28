@@ -12,7 +12,7 @@ class StringsAnnotationProcessor : AbstractProcessor() {
     }
 
     override fun getSupportedAnnotationTypes(): Set<kotlin.String> = setOf(
-        StringValue::class.java.name,
+        StaticString::class.java.name,
         DynamicString::class.java.name,
         HtmlString::class.java.name,
         StringPlurals::class.java.name,
