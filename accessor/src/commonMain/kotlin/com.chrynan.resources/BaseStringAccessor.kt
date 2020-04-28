@@ -34,7 +34,11 @@ abstract class BaseStringAccessor(
                 )
             }
 
-        return formatter.format(input = string, values = values)
+        val formattedOutput = formatter.format(input = string, values = values)
+
+        computedValueCache[cacheKey] = formattedOutput
+
+        return formattedOutput
     }
 
     override fun getHtmlString(resourceID: HtmlStringResourceID, locale: Locale): String =
@@ -49,14 +53,38 @@ abstract class BaseStringAccessor(
         quantity: Quantity,
         vararg arguments: Any
     ): String {
-        val string = repo.getStringValue(resourceID = resourceID, locale = locale)
+        val cacheKey =
+            CacheKey(resourceID = resourceID, locale = locale, quantity = quantity, arguments = arguments.toList())
 
-        TODO("Not yet implemented")
+        val cacheValue = computedValueCache[cacheKey]
+
+        if (cacheValue != null) return cacheValue
+
+        val string = repo.getPluralStringValue(resourceID = resourceID, locale = locale, quantity = quantity)
+
+        val result = parser.parse(input = string)
+
+        val values = result.arguments
+            .distinctBy { it.number }
+            .sortedBy { it.number }
+            .mapIndexed { index, argument ->
+                StringArgumentFormatter.Value(
+                    inputValue = argument.value,
+                    outputValue = arguments[index].toString()
+                )
+            }
+
+        val formattedOutput = formatter.format(input = string, values = values)
+
+        computedValueCache[cacheKey] = formattedOutput
+
+        return formattedOutput
     }
 
     private data class CacheKey(
         val resourceID: ResourceID,
         val locale: Locale,
-        val arguments: List<Any>
+        val quantity: Quantity? = null,
+        val arguments: List<Any> = emptyList()
     )
 }
