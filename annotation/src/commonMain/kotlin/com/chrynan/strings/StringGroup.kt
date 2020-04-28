@@ -3,9 +3,9 @@ package com.chrynan.strings
 @Repeatable
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
-annotation class StringGroup(val name: kotlin.String, val values: Array<StringGroupItem>)
+annotation class StringGroup(val name: String, val values: Array<StringGroupItem>)
 
 @Repeatable
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
-annotation class StringGroupItem(val value: kotlin.String, val locale: kotlin.String = "en")
+annotation class StringGroupItem(val value: String, val locale: String = "en")

@@ -4,12 +4,12 @@ package com.chrynan.strings
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 annotation class StringArray(
-    val name: kotlin.String,
-    val locale: kotlin.String = "en",
+    val name: String,
+    val locale: String = "en",
     val values: Array<StringArrayItem>
 )
 
 @Repeatable
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
-annotation class StringArrayItem(val value: kotlin.String)
+annotation class StringArrayItem(val value: String)
