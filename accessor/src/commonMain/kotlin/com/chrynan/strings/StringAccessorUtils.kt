@@ -1,4 +1,4 @@
-package com.chrynan.resources
+package com.chrynan.strings
 
 fun StringAccessor.getStringOrNull(resourceID: StringResourceID, locale: Locale = Locale.default): kotlin.String? =
     try {

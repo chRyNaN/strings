@@ -1,4 +1,4 @@
-package com.chrynan.resources
+package com.chrynan.strings
 
 interface StringArgumentFormatter {
 

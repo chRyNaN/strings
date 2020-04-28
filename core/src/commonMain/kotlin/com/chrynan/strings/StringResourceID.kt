@@ -1,3 +1,3 @@
-package com.chrynan.resources
+package com.chrynan.strings
 
 inline class StringResourceID(override val name: String) : ResourceID

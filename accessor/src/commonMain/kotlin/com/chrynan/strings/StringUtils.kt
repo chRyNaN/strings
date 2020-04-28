@@ -1,4 +1,4 @@
-package com.chrynan.resources
+package com.chrynan.strings
 
 fun string(resourceID: StringResourceID, locale: Locale = Locale.default): Lazy<kotlin.String> =
     lazy { Strings.getString(resourceID = resourceID, locale = locale) }
