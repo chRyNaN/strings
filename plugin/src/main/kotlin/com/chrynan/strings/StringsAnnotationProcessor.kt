@@ -15,12 +15,12 @@ class StringsAnnotationProcessor : AbstractProcessor() {
         StringValue::class.java.name,
         DynamicString::class.java.name,
         HtmlString::class.java.name,
-        Plurals::class.java.name,
+        StringPlurals::class.java.name,
         StringArray::class.java.name,
         StringGroup::class.java.name,
         StringGroupItem::class.java.name,
         StringArrayItem::class.java.name,
-        PluralValue::class.java.name
+        StringPluralItem::class.java.name
     )
 
     override fun process(roundEnvironment: RoundEnvironment) {
@@ -34,7 +34,7 @@ class StringsAnnotationProcessor : AbstractProcessor() {
         val names = listOf(
             StringGroupItem::class.java.name,
             StringArrayItem::class.java.name,
-            PluralValue::class.java.name
+            StringPluralItem::class.java.name
         )
         val items = roundEnvironment.getElementsAnnotatedWith(names)
 

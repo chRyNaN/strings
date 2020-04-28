@@ -3,9 +3,9 @@ package com.chrynan.strings
 @Repeatable
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
-annotation class Plurals(val name: String, val locale: String, val values: Array<PluralValue>)
+annotation class StringPlurals(val name: String, val locale: String, val values: Array<StringPluralItem>)
 
 @Repeatable
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
-annotation class PluralValue(val quantity: Quantity, val value: String)
+annotation class StringPluralItem(val quantity: Quantity, val value: String)
