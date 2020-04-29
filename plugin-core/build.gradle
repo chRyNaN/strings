@@ -29,7 +29,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId = rootProject.libraryGroup
-            artifactId = "strings-plugin"
+            artifactId = "strings-plugin-core"
             version = rootProject.libraryVersion
 
             from components.java
