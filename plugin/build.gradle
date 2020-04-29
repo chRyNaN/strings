@@ -5,12 +5,14 @@ version rootProject.libraryVersion
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    compileOnly "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.3.71"
 
     implementation project(":core")
     implementation project(":annotation")
     implementation project(":accessor")
 
     implementation "com.chrynan.logger:logger-core-jvm:1.2.1"
+    implementation "com.squareup:kotlinpoet:1.5.0"
     implementation "com.chrynan.kotlin-writer:kotlin-writer:0.2.2"
     implementation "de.jensklingenberg:mpapt-runtime:0.8.4"
 }
