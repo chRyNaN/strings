@@ -1,6 +1,6 @@
 package com.chrynan.strings
 
-fun StringAccessor.getStringOrNull(resourceID: StringResourceID, locale: Locale = Locale.default): kotlin.String? =
+fun StringAccessor.getStringOrNull(resourceID: StringResourceID, locale: String = Locale.default): String? =
     try {
         getString(resourceID = resourceID, locale = locale)
     } catch (exception: StringResourceIDNotFoundException) {
@@ -9,9 +9,9 @@ fun StringAccessor.getStringOrNull(resourceID: StringResourceID, locale: Locale 
 
 fun StringAccessor.getDynamicStringOrNull(
     resourceID: DynamicStringResourceID,
-    locale: Locale = Locale.default,
+    locale: String = Locale.default,
     vararg arguments: Any
-): kotlin.String? =
+): String? =
     try {
         getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments)
     } catch (exception: StringResourceIDNotFoundException) {
@@ -20,8 +20,8 @@ fun StringAccessor.getDynamicStringOrNull(
 
 fun StringAccessor.getHtmlStringOrNull(
     resourceID: HtmlStringResourceID,
-    locale: Locale = Locale.default
-): kotlin.String? =
+    locale: String = Locale.default
+): String? =
     try {
         getHtmlString(resourceID = resourceID, locale = locale)
     } catch (exception: StringResourceIDNotFoundException) {
@@ -30,8 +30,8 @@ fun StringAccessor.getHtmlStringOrNull(
 
 fun StringAccessor.getStringArrayOrNull(
     resourceID: StringArrayResourceID,
-    locale: Locale = Locale.default
-): Array<kotlin.String>? =
+    locale: String = Locale.default
+): Array<String>? =
     try {
         getStringArray(resourceID = resourceID, locale = locale)
     } catch (exception: StringResourceIDNotFoundException) {
@@ -40,8 +40,8 @@ fun StringAccessor.getStringArrayOrNull(
 
 fun StringAccessor.getStringArrayOrEmpty(
     resourceID: StringArrayResourceID,
-    locale: Locale = Locale.default
-): Array<kotlin.String> =
+    locale: String = Locale.default
+): Array<String> =
     try {
         getStringArray(resourceID = resourceID, locale = locale)
     } catch (exception: StringResourceIDNotFoundException) {
@@ -50,10 +50,10 @@ fun StringAccessor.getStringArrayOrEmpty(
 
 fun StringAccessor.getPluralStringOrNull(
     resourceID: PluralStringResourceID,
-    locale: Locale = Locale.default,
+    locale: String = Locale.default,
     quantity: Quantity,
     vararg arguments: Any
-): kotlin.String? =
+): String? =
     try {
         getPluralString(resourceID = resourceID, quantity = quantity, locale = locale, arguments = *arguments)
     } catch (exception: StringResourceIDNotFoundException) {

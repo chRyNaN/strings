@@ -10,10 +10,10 @@ abstract class BaseStringAccessor(
 
     private val computedValueCache = mutableMapOf<CacheKey, String>()
 
-    override fun getString(resourceID: StringResourceID, locale: Locale): String =
+    override fun getString(resourceID: StringResourceID, locale: String): String =
         repo.getStringValue(resourceID = resourceID, locale = locale)
 
-    override fun getDynamicString(resourceID: DynamicStringResourceID, locale: Locale, vararg arguments: Any): String {
+    override fun getDynamicString(resourceID: DynamicStringResourceID, locale: String, vararg arguments: Any): String {
         val cacheKey = CacheKey(resourceID = resourceID, locale = locale, arguments = arguments.toList())
 
         val cacheValue = computedValueCache[cacheKey]
@@ -41,15 +41,15 @@ abstract class BaseStringAccessor(
         return formattedOutput
     }
 
-    override fun getHtmlString(resourceID: HtmlStringResourceID, locale: Locale): String =
+    override fun getHtmlString(resourceID: HtmlStringResourceID, locale: String): String =
         repo.getStringValue(resourceID = resourceID, locale = locale)
 
-    override fun getStringArray(resourceID: StringArrayResourceID, locale: Locale): Array<String> =
+    override fun getStringArray(resourceID: StringArrayResourceID, locale: String): Array<String> =
         repo.getStringArray(resourceID = resourceID, locale = locale)
 
     override fun getPluralString(
         resourceID: PluralStringResourceID,
-        locale: Locale,
+        locale: String,
         quantity: Quantity,
         vararg arguments: Any
     ): String {
@@ -83,7 +83,7 @@ abstract class BaseStringAccessor(
 
     private data class CacheKey(
         val resourceID: ResourceID,
-        val locale: Locale,
+        val locale: String,
         val quantity: Quantity? = null,
         val arguments: List<Any> = emptyList()
     )

@@ -6,21 +6,21 @@ object Strings : StringAccessor {
 
     lateinit var accessor: StringAccessor
 
-    override fun getString(resourceID: StringResourceID, locale: Locale): String =
+    override fun getString(resourceID: StringResourceID, locale: String): String =
         accessor.getString(resourceID = resourceID, locale = locale)
 
-    override fun getDynamicString(resourceID: DynamicStringResourceID, locale: Locale, vararg arguments: Any): String =
+    override fun getDynamicString(resourceID: DynamicStringResourceID, locale: String, vararg arguments: Any): String =
         accessor.getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments)
 
-    override fun getHtmlString(resourceID: HtmlStringResourceID, locale: Locale): String =
+    override fun getHtmlString(resourceID: HtmlStringResourceID, locale: String): String =
         accessor.getHtmlString(resourceID = resourceID, locale = locale)
 
-    override fun getStringArray(resourceID: StringArrayResourceID, locale: Locale): Array<String> =
+    override fun getStringArray(resourceID: StringArrayResourceID, locale: String): Array<String> =
         accessor.getStringArray(resourceID = resourceID, locale = locale)
 
     override fun getPluralString(
         resourceID: PluralStringResourceID,
-        locale: Locale,
+        locale: String,
         quantity: Quantity,
         vararg arguments: Any
     ): String =

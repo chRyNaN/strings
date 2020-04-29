@@ -7,13 +7,13 @@ class MapStringRepo(
     private val stringArrayMap: Map<Key, Array<String>>
 ) : StringRepo {
 
-    override fun getStringValue(resourceID: ResourceID, locale: Locale): String {
+    override fun getStringValue(resourceID: ResourceID, locale: String): String {
         val key = Key(resourceID = resourceID, locale = locale)
 
         return stringMap[key] ?: throw StringResourceIDNotFoundException(resourceID = resourceID, locale = locale)
     }
 
-    override fun getPluralStringValue(resourceID: ResourceID, locale: Locale, quantity: Quantity): String {
+    override fun getPluralStringValue(resourceID: ResourceID, locale: String, quantity: Quantity): String {
         val key = Key(resourceID = resourceID, locale = locale, quantity = quantity)
 
         return stringMap[key] ?: throw StringResourceIDNotFoundException(
@@ -23,7 +23,7 @@ class MapStringRepo(
         )
     }
 
-    override fun getStringArray(resourceID: StringArrayResourceID, locale: Locale): Array<String> {
+    override fun getStringArray(resourceID: StringArrayResourceID, locale: String): Array<String> {
         val key = Key(resourceID = resourceID, locale = locale)
 
         return stringArrayMap[key] ?: throw StringResourceIDNotFoundException(resourceID = resourceID, locale = locale)
@@ -31,7 +31,7 @@ class MapStringRepo(
 
     data class Key(
         val resourceID: ResourceID,
-        val locale: Locale,
+        val locale: String,
         val quantity: Quantity? = null
     )
 }

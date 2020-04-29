@@ -1,15 +1,6 @@
 package com.chrynan.strings
 
-class Locale(
-    val language: String,
-    val script: String,
-    val country: String,
-    val variant: String
-) {
+object Locale {
 
-    companion object {
-
-        // TODO
-        val default: Locale = Locale("", "", "", "")
-    }
+    const val default: String = "en"
 }
