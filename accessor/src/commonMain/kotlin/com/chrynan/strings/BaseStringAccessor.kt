@@ -10,7 +10,7 @@ abstract class BaseStringAccessor(
 
     private val computedValueCache = mutableMapOf<CacheKey, String>()
 
-    override fun getString(resourceID: StringResourceID, locale: String): String =
+    override fun getStaticString(resourceID: StringResourceID, locale: String): String =
         repo.getStringValue(resourceID = resourceID, locale = locale)
 
     override fun getDynamicString(resourceID: DynamicStringResourceID, locale: String, vararg arguments: Any): String {

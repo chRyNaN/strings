@@ -2,7 +2,7 @@ package com.chrynan.strings
 
 fun StringAccessor.getStringOrNull(resourceID: StringResourceID, locale: String = Locale.default): String? =
     try {
-        getString(resourceID = resourceID, locale = locale)
+        getStaticString(resourceID = resourceID, locale = locale)
     } catch (exception: StringResourceIDNotFoundException) {
         null
     }

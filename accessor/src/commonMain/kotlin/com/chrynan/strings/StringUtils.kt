@@ -1,7 +1,7 @@
 package com.chrynan.strings
 
 fun string(resourceID: StringResourceID, locale: String = Locale.default): Lazy<String> =
-    lazy { Strings.getString(resourceID = resourceID, locale = locale) }
+    lazy { Strings.getStaticString(resourceID = resourceID, locale = locale) }
 
 fun stringArray(resourceID: StringArrayResourceID, locale: String = Locale.default): Lazy<Array<String>> =
     lazy { Strings.getStringArray(resourceID = resourceID, locale = locale) }

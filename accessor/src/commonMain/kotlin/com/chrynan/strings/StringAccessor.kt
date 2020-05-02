@@ -2,7 +2,7 @@ package com.chrynan.strings
 
 interface StringAccessor {
 
-    fun getString(resourceID: StringResourceID, locale: String = Locale.default): String
+    fun getStaticString(resourceID: StringResourceID, locale: String = Locale.default): String
 
     fun getDynamicString(
         resourceID: DynamicStringResourceID,
