@@ -3,20 +3,27 @@ package com.chrynan.strings
 import kotlin.String
 
 class MapStringRepository(
-    private val stringMap: Map<Key, String>,
-    private val stringArrayMap: Map<Key, Array<String>>
-) : StringRepository {
+    stringMap: Map<Key, String>,
+    stringArrayMap: Map<Key, Array<String>>
+) : StringRepository,
+    MutableStringRepository {
+
+    private val mutableStringMap = stringMap.toMutableMap()
+    private val mutableStringArrayMap = stringArrayMap.toMutableMap()
 
     override fun getStringValue(resourceID: ResourceID, locale: String): String {
         val key = Key(resourceID = resourceID, locale = locale)
 
-        return stringMap[key] ?: throw StringResourceIDNotFoundException(resourceID = resourceID, locale = locale)
+        return mutableStringMap[key] ?: throw StringResourceIDNotFoundException(
+            resourceID = resourceID,
+            locale = locale
+        )
     }
 
-    override fun getPluralStringValue(resourceID: ResourceID, locale: String, quantity: Quantity): String {
+    override fun getPluralStringValue(resourceID: PluralStringResourceID, locale: String, quantity: Quantity): String {
         val key = Key(resourceID = resourceID, locale = locale, quantity = quantity)
 
-        return stringMap[key] ?: throw StringResourceIDNotFoundException(
+        return mutableStringMap[key] ?: throw StringResourceIDNotFoundException(
             resourceID = resourceID,
             locale = locale,
             quantity = quantity
@@ -26,7 +33,34 @@ class MapStringRepository(
     override fun getStringArray(resourceID: StringArrayResourceID, locale: String): Array<String> {
         val key = Key(resourceID = resourceID, locale = locale)
 
-        return stringArrayMap[key] ?: throw StringResourceIDNotFoundException(resourceID = resourceID, locale = locale)
+        return mutableStringArrayMap[key] ?: throw StringResourceIDNotFoundException(
+            resourceID = resourceID,
+            locale = locale
+        )
+    }
+
+    override fun updateStringValue(resourceID: ResourceID, locale: String, value: String) {
+        val key = Key(resourceID = resourceID, locale = locale)
+
+        mutableStringMap[key] = value
+    }
+
+    override fun updatePluralStringValues(
+        resourceID: PluralStringResourceID,
+        locale: String,
+        values: Map<Quantity, String>
+    ) {
+        values.forEach {
+            val key = Key(resourceID = resourceID, locale = locale, quantity = it.key)
+
+            mutableStringMap[key] = it.value
+        }
+    }
+
+    override fun updateStringArray(resourceID: StringArrayResourceID, locale: String, value: Array<String>) {
+        val key = Key(resourceID = resourceID, locale = locale)
+
+        mutableStringArrayMap[key] = value
     }
 
     data class Key(
