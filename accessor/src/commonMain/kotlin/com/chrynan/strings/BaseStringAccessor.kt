@@ -3,7 +3,7 @@ package com.chrynan.strings
 import kotlin.String
 
 abstract class BaseStringAccessor(
-    private val repo: StringRepo,
+    private val repo: StringRepository,
     private val parser: StringArgumentParser,
     private val formatter: StringArgumentFormatter
 ) : StringAccessor {

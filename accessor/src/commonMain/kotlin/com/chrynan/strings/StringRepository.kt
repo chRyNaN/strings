@@ -1,6 +1,6 @@
 package com.chrynan.strings
 
-interface StringRepo {
+interface StringRepository {
 
     fun getStringValue(resourceID: ResourceID, locale: String): String
 
