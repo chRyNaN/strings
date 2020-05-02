@@ -1,5 +1,6 @@
 package com.chrynan.strings
 
+import com.chrynan.strings.annotation.*
 import de.jensklingenberg.mpapt.model.RoundEnvironment
 import kotlin.reflect.KClass
 

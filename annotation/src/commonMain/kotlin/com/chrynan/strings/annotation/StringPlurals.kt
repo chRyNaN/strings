@@ -1,4 +1,6 @@
-package com.chrynan.strings
+package com.chrynan.strings.annotation
+
+import com.chrynan.strings.Quantity
 
 @Repeatable
 @Target(AnnotationTarget.FILE)

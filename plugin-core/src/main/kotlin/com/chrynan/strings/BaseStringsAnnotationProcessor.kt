@@ -2,6 +2,7 @@ package com.chrynan.strings
 
 import com.chrynan.logger.Logger
 import com.chrynan.logger.logError
+import com.chrynan.strings.annotation.*
 import de.jensklingenberg.mpapt.model.AbstractProcessor
 import de.jensklingenberg.mpapt.model.RoundEnvironment
 import org.jetbrains.kotlin.cli.common.CLIConfigurationKeys

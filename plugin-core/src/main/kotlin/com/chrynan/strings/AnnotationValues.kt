@@ -1,5 +1,6 @@
 package com.chrynan.strings
 
+import com.chrynan.strings.annotation.*
 import kotlin.reflect.KClass
 
 sealed class AnnotationValue {
