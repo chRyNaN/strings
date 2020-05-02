@@ -2,7 +2,7 @@ package com.chrynan.strings
 
 interface StringReviser : StringAccessor {
 
-    fun updateStaticString(resourceID: StringResourceID, locale: String, value: String)
+    fun updateStaticString(resourceID: StaticStringResourceID, locale: String, value: String)
 
     fun updateDynamicString(resourceID: DynamicStringResourceID, locale: String, value: String)
 

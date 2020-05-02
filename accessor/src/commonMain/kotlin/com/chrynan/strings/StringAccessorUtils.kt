@@ -1,6 +1,6 @@
 package com.chrynan.strings
 
-fun StringAccessor.getStringOrNull(resourceID: StringResourceID, locale: String = Locale.default): String? =
+fun StringAccessor.getStringOrNull(resourceID: StaticStringResourceID, locale: String = Locale.default): String? =
     try {
         getStaticString(resourceID = resourceID, locale = locale)
     } catch (exception: StringResourceIDNotFoundException) {

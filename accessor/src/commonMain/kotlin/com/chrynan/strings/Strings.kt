@@ -6,7 +6,7 @@ object Strings : StringAccessor {
 
     lateinit var accessor: StringAccessor
 
-    override fun getStaticString(resourceID: StringResourceID, locale: String): String =
+    override fun getStaticString(resourceID: StaticStringResourceID, locale: String): String =
         accessor.getStaticString(resourceID = resourceID, locale = locale)
 
     override fun getDynamicString(resourceID: DynamicStringResourceID, locale: String, vararg arguments: Any): String =

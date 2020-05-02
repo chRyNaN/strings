@@ -1,6 +1,6 @@
 package com.chrynan.strings
 
-fun string(resourceID: StringResourceID, locale: String = Locale.default): Lazy<String> =
+fun string(resourceID: StaticStringResourceID, locale: String = Locale.default): Lazy<String> =
     lazy { Strings.getStaticString(resourceID = resourceID, locale = locale) }
 
 fun stringArray(resourceID: StringArrayResourceID, locale: String = Locale.default): Lazy<Array<String>> =
@@ -37,7 +37,7 @@ fun dynamicStringFormatter(
         Strings.getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments)
     }
 
-fun stringOrNull(resourceID: StringResourceID, locale: String = Locale.default): Lazy<String?> =
+fun stringOrNull(resourceID: StaticStringResourceID, locale: String = Locale.default): Lazy<String?> =
     lazy { Strings.getStringOrNull(resourceID = resourceID, locale = locale) }
 
 fun stringArrayOrNull(resourceID: StringArrayResourceID, locale: String = Locale.default): Lazy<Array<String>?> =
