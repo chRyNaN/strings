@@ -1,6 +1,7 @@
 rootProject.name = "resources"
 
 include ":accessor"
+include ":accessor-coroutines"
 include ":annotation"
 include ":core"
 include ":plugin-core"
