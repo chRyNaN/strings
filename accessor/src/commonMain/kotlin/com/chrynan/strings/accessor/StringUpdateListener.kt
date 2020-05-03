@@ -1,4 +1,9 @@
-package com.chrynan.strings
+package com.chrynan.strings.accessor
+
+import com.chrynan.strings.PluralStringResourceID
+import com.chrynan.strings.Quantity
+import com.chrynan.strings.ResourceID
+import com.chrynan.strings.StringArrayResourceID
 
 interface StringUpdateListener {
 

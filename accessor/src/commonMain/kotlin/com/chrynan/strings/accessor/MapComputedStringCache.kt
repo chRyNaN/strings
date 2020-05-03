@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.accessor
 
 class MapComputedStringCache : ComputedStringCache {
 

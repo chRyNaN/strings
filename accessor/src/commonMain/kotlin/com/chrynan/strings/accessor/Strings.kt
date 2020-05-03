@@ -1,5 +1,6 @@
-package com.chrynan.strings
+package com.chrynan.strings.accessor
 
+import com.chrynan.strings.*
 import kotlin.String
 
 object Strings : StringAccessor {

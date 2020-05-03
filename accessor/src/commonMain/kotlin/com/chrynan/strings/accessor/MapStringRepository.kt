@@ -1,5 +1,6 @@
-package com.chrynan.strings
+package com.chrynan.strings.accessor
 
+import com.chrynan.strings.*
 import kotlin.String
 
 class MapStringRepository(
@@ -12,7 +13,10 @@ class MapStringRepository(
     private val mutableStringArrayMap = stringArrayMap.toMutableMap()
 
     override fun getStringValue(resourceID: ResourceID, locale: String): String {
-        val key = Key(resourceID = resourceID, locale = locale)
+        val key = Key(
+            resourceID = resourceID,
+            locale = locale
+        )
 
         return mutableStringMap[key] ?: throw StringResourceIDNotFoundException(
             resourceID = resourceID,
@@ -21,7 +25,11 @@ class MapStringRepository(
     }
 
     override fun getPluralStringValue(resourceID: PluralStringResourceID, locale: String, quantity: Quantity): String {
-        val key = Key(resourceID = resourceID, locale = locale, quantity = quantity)
+        val key = Key(
+            resourceID = resourceID,
+            locale = locale,
+            quantity = quantity
+        )
 
         return mutableStringMap[key] ?: throw StringResourceIDNotFoundException(
             resourceID = resourceID,
@@ -31,7 +39,10 @@ class MapStringRepository(
     }
 
     override fun getStringArray(resourceID: StringArrayResourceID, locale: String): Array<String> {
-        val key = Key(resourceID = resourceID, locale = locale)
+        val key = Key(
+            resourceID = resourceID,
+            locale = locale
+        )
 
         return mutableStringArrayMap[key] ?: throw StringResourceIDNotFoundException(
             resourceID = resourceID,
@@ -40,7 +51,10 @@ class MapStringRepository(
     }
 
     override fun updateStringValue(resourceID: ResourceID, locale: String, value: String) {
-        val key = Key(resourceID = resourceID, locale = locale)
+        val key = Key(
+            resourceID = resourceID,
+            locale = locale
+        )
 
         mutableStringMap[key] = value
     }
@@ -51,14 +65,21 @@ class MapStringRepository(
         values: Map<Quantity, String>
     ) {
         values.forEach {
-            val key = Key(resourceID = resourceID, locale = locale, quantity = it.key)
+            val key = Key(
+                resourceID = resourceID,
+                locale = locale,
+                quantity = it.key
+            )
 
             mutableStringMap[key] = it.value
         }
     }
 
     override fun updateStringArray(resourceID: StringArrayResourceID, locale: String, value: Array<String>) {
-        val key = Key(resourceID = resourceID, locale = locale)
+        val key = Key(
+            resourceID = resourceID,
+            locale = locale
+        )
 
         mutableStringArrayMap[key] = value
     }

@@ -1,4 +1,6 @@
-package com.chrynan.strings
+package com.chrynan.strings.accessor
+
+import com.chrynan.strings.*
 
 abstract class BaseStringAccessor(
     private val repository: StringRepository,
@@ -11,7 +13,11 @@ abstract class BaseStringAccessor(
         repository.getStringValue(resourceID = resourceID, locale = locale)
 
     override fun getDynamicString(resourceID: DynamicStringResourceID, locale: String, vararg arguments: Any): String {
-        val cacheKey = ComputedStringCache.Key(resourceID = resourceID, locale = locale, arguments = arguments.toList())
+        val cacheKey = ComputedStringCache.Key(
+            resourceID = resourceID,
+            locale = locale,
+            arguments = arguments.toList()
+        )
 
         val cacheValue = computedStringCache[cacheKey]
 
