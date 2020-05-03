@@ -2,6 +2,8 @@ package com.chrynan.strings
 
 interface StringReviser : StringAccessor {
 
+    val updateListeners: MutableSet<StringUpdateListener>
+
     fun updateStaticString(resourceID: StaticStringResourceID, locale: String, value: String)
 
     fun updateDynamicString(resourceID: DynamicStringResourceID, locale: String, value: String)
