@@ -5,18 +5,17 @@ import kotlin.String
 abstract class BaseStringAccessor(
     private val repo: StringRepository,
     private val parser: StringArgumentParser,
-    private val formatter: StringArgumentFormatter
+    private val formatter: StringArgumentFormatter,
+    private val computedStringCache: ComputedStringCache = MapComputedStringCache()
 ) : StringAccessor {
-
-    private val computedValueCache = mutableMapOf<CacheKey, String>()
 
     override fun getStaticString(resourceID: StaticStringResourceID, locale: String): String =
         repo.getStringValue(resourceID = resourceID, locale = locale)
 
     override fun getDynamicString(resourceID: DynamicStringResourceID, locale: String, vararg arguments: Any): String {
-        val cacheKey = CacheKey(resourceID = resourceID, locale = locale, arguments = arguments.toList())
+        val cacheKey = ComputedStringCache.Key(resourceID = resourceID, locale = locale, arguments = arguments.toList())
 
-        val cacheValue = computedValueCache[cacheKey]
+        val cacheValue = computedStringCache[cacheKey]
 
         if (cacheValue != null) return cacheValue
 
@@ -36,7 +35,7 @@ abstract class BaseStringAccessor(
 
         val formattedOutput = formatter.format(input = string, values = values)
 
-        computedValueCache[cacheKey] = formattedOutput
+        computedStringCache[cacheKey] = formattedOutput
 
         return formattedOutput
     }
@@ -54,9 +53,14 @@ abstract class BaseStringAccessor(
         vararg arguments: Any
     ): String {
         val cacheKey =
-            CacheKey(resourceID = resourceID, locale = locale, quantity = quantity, arguments = arguments.toList())
+            ComputedStringCache.Key(
+                resourceID = resourceID,
+                locale = locale,
+                quantity = quantity,
+                arguments = arguments.toList()
+            )
 
-        val cacheValue = computedValueCache[cacheKey]
+        val cacheValue = computedStringCache[cacheKey]
 
         if (cacheValue != null) return cacheValue
 
@@ -76,15 +80,8 @@ abstract class BaseStringAccessor(
 
         val formattedOutput = formatter.format(input = string, values = values)
 
-        computedValueCache[cacheKey] = formattedOutput
+        computedStringCache[cacheKey] = formattedOutput
 
         return formattedOutput
     }
-
-    private data class CacheKey(
-        val resourceID: ResourceID,
-        val locale: String,
-        val quantity: Quantity? = null,
-        val arguments: List<Any> = emptyList()
-    )
 }
