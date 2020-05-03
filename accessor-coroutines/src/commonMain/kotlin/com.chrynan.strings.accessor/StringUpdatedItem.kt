@@ -7,21 +7,24 @@ import com.chrynan.strings.StringArrayResourceID
 
 sealed class StringUpdatedItem {
 
+    abstract val resourceID: ResourceID
+    abstract val locale: String
+
     data class StringValue(
-        val resourceID: ResourceID,
-        val locale: String,
+        override val resourceID: ResourceID,
+        override val locale: String,
         val value: String
     ) : StringUpdatedItem()
 
     data class PluralStringValues(
-        val resourceID: PluralStringResourceID,
-        val locale: String,
+        override val resourceID: PluralStringResourceID,
+        override val locale: String,
         val values: Map<Quantity, String>
     ) : StringUpdatedItem()
 
     data class StringArray(
-        val resourceID: StringArrayResourceID,
-        val locale: String,
+        override val resourceID: StringArrayResourceID,
+        override val locale: String,
         val value: List<String>
     ) : StringUpdatedItem()
 }
