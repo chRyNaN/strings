@@ -11,17 +11,17 @@ sealed class StringUpdatedItem {
         val resourceID: ResourceID,
         val locale: String,
         val value: String
-    )
+    ) : StringUpdatedItem()
 
     data class PluralStringValues(
         val resourceID: PluralStringResourceID,
         val locale: String,
         val values: Map<Quantity, String>
-    )
+    ) : StringUpdatedItem()
 
     data class StringArray(
         val resourceID: StringArrayResourceID,
         val locale: String,
         val value: List<String>
-    )
+    ) : StringUpdatedItem()
 }
