@@ -2,6 +2,9 @@ package com.chrynan.strings
 
 class MapComputedStringCache : ComputedStringCache {
 
+    override val entries: Set<ComputedStringCache.Entry>
+        get() = computedValueCache.entries.map { ComputedStringCache.Entry(key = it.key, value = it.value) }.toSet()
+
     private val computedValueCache = mutableMapOf<ComputedStringCache.Key, String?>()
 
     override fun get(key: ComputedStringCache.Key): String? = computedValueCache[key]

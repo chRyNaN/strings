@@ -1,16 +1,14 @@
 package com.chrynan.strings
 
-import kotlin.String
-
 abstract class BaseStringAccessor(
-    private val repo: StringRepository,
+    private val repository: StringRepository,
     private val parser: StringArgumentParser,
     private val formatter: StringArgumentFormatter,
-    private val computedStringCache: ComputedStringCache = MapComputedStringCache()
+    private val computedStringCache: ComputedStringCache
 ) : StringAccessor {
 
     override fun getStaticString(resourceID: StaticStringResourceID, locale: String): String =
-        repo.getStringValue(resourceID = resourceID, locale = locale)
+        repository.getStringValue(resourceID = resourceID, locale = locale)
 
     override fun getDynamicString(resourceID: DynamicStringResourceID, locale: String, vararg arguments: Any): String {
         val cacheKey = ComputedStringCache.Key(resourceID = resourceID, locale = locale, arguments = arguments.toList())
@@ -19,7 +17,7 @@ abstract class BaseStringAccessor(
 
         if (cacheValue != null) return cacheValue
 
-        val string = repo.getStringValue(resourceID = resourceID, locale = locale)
+        val string = repository.getStringValue(resourceID = resourceID, locale = locale)
 
         val result = parser.parse(input = string)
 
@@ -41,10 +39,10 @@ abstract class BaseStringAccessor(
     }
 
     override fun getHtmlString(resourceID: HtmlStringResourceID, locale: String): String =
-        repo.getStringValue(resourceID = resourceID, locale = locale)
+        repository.getStringValue(resourceID = resourceID, locale = locale)
 
     override fun getStringArray(resourceID: StringArrayResourceID, locale: String): Array<String> =
-        repo.getStringArray(resourceID = resourceID, locale = locale)
+        repository.getStringArray(resourceID = resourceID, locale = locale)
 
     override fun getPluralString(
         resourceID: PluralStringResourceID,
@@ -64,7 +62,7 @@ abstract class BaseStringAccessor(
 
         if (cacheValue != null) return cacheValue
 
-        val string = repo.getPluralStringValue(resourceID = resourceID, locale = locale, quantity = quantity)
+        val string = repository.getPluralStringValue(resourceID = resourceID, locale = locale, quantity = quantity)
 
         val result = parser.parse(input = string)
 
