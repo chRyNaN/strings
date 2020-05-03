@@ -39,6 +39,14 @@ fun dynamicStringFormatter(
         Strings.getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments)
     }
 
+fun htmlStringFormatter(
+    resourceID: HtmlStringResourceID,
+    locale: String = Locale.default
+): (arguments: Array<Any>) -> String =
+    { arguments ->
+        Strings.getHtmlString(resourceID = resourceID, locale = locale, arguments = *arguments)
+    }
+
 fun stringOrNull(resourceID: StaticStringResourceID, locale: String = Locale.default): Lazy<String?> =
     lazy { Strings.getStringOrNull(resourceID = resourceID, locale = locale) }
 
@@ -77,4 +85,12 @@ fun dynamicStringOrNullFormatter(
 ): (arguments: Array<Any>) -> String? =
     { arguments ->
         Strings.getDynamicStringOrNull(resourceID = resourceID, locale = locale, arguments = *arguments)
+    }
+
+fun htmlStringOrNullFormatter(
+    resourceID: HtmlStringResourceID,
+    locale: String = Locale.default
+): (arguments: Array<Any>) -> String =
+    { arguments ->
+        Strings.getHtmlString(resourceID = resourceID, locale = locale, arguments = *arguments)
     }
