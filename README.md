@@ -28,6 +28,7 @@ Strings.accessor = GeneratedStringAccessor()
 ```
 
 **Access the String Resources:**
+
 ```kotlin
 // Using the generated String Resource IDs
 
@@ -85,9 +86,11 @@ Dynamic Strings are String values that can be formatted by providing additional 
 ```
 
 **Dynamic String Arguments:**
+
 Dynamic String arguments take the following format: `%[name]\$[type]`. Dynamic Strings with no arguments are essentially Static Strings.
 
 **Supported Argument Types:**
+
 * Any -> `\$a`
 * Char -> `\$c`
 * String -> `\$s`
@@ -99,6 +102,7 @@ Dynamic String arguments take the following format: `%[name]\$[type]`. Dynamic S
 Any other argument type value will be ignored and will not be considered as an argument in the String.
 
 **Argument Names:**
+
 All Dynamic String arguments need to be prefaced with an argument name (`%1`). These names will be used to create input argument names in the generated code.
 
 Dynamic Strings can use the same argument multiple times:
@@ -109,6 +113,7 @@ Dynamic Strings can use the same argument multiple times:
 If Dynamic String names are a number, they are prefaced with text in the generated code to make it a valid Kotlin parameter name.
 
 **Escaping Arguments:**
+
 Dynamic String arguments always take the following format: `%[name]\$[type]`. However, if you have a String that contains that format but don't want it registered as an argument, simply escape it with two consecutive backslash characters ('\'):
 ```kotlin
 @file:DynamicString(name = "complex_text", value = "Escaped text that looks like this: \\%a\$s.")
@@ -155,6 +160,7 @@ A String Group is a collection of related single String resources that have diff
 ```
 
 The above example is equivalent to the following:
+
 ```kotlin
 @file:StaticString(name = "hello_world", value = "Hello World", locale = "en")
 @file:StaticString(name = "hello_world", value = "สวัสดีชาวโลก", locale = "th")
