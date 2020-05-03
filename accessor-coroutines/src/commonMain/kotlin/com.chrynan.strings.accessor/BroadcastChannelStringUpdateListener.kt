@@ -9,7 +9,7 @@ import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.ReceiveChannel
 
 @ExperimentalCoroutinesApi
-class BroadcastChannelStringUpdateListener : StringUpdateListener {
+class BroadcastChannelStringUpdateListener(val listenerID: String? = null) : StringUpdateListener {
 
     private val broadcastChannel = ConflatedBroadcastChannel<StringUpdatedItem>()
 
