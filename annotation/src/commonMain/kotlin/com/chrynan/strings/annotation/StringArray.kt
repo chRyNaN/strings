@@ -1,11 +1,13 @@
 package com.chrynan.strings.annotation
 
+import com.chrynan.strings.Locale
+
 @Repeatable
 @Target(AnnotationTarget.FILE)
 @Retention(AnnotationRetention.SOURCE)
 annotation class StringArray(
     val name: String,
-    val locale: String = "en",
+    val locale: String = Locale.default,
     val values: Array<StringArrayItem>
 )
 
