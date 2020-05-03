@@ -12,7 +12,7 @@ interface StringAccessor {
         vararg arguments: Any
     ): String
 
-    fun getHtmlString(resourceID: HtmlStringResourceID, locale: String = Locale.default): String
+    fun getHtmlString(resourceID: HtmlStringResourceID, locale: String = Locale.default, vararg arguments: Any): String
 
     fun getStringArray(resourceID: StringArrayResourceID, locale: String = Locale.default): Array<String>
 

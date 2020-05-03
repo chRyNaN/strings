@@ -15,8 +15,8 @@ object Strings : StringAccessor,
     override fun getDynamicString(resourceID: DynamicStringResourceID, locale: String, vararg arguments: Any): String =
         accessor.getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments)
 
-    override fun getHtmlString(resourceID: HtmlStringResourceID, locale: String): String =
-        accessor.getHtmlString(resourceID = resourceID, locale = locale)
+    override fun getHtmlString(resourceID: HtmlStringResourceID, locale: String, vararg arguments: Any): String =
+        accessor.getHtmlString(resourceID = resourceID, locale = locale, arguments = *arguments)
 
     override fun getStringArray(resourceID: StringArrayResourceID, locale: String): Array<String> =
         accessor.getStringArray(resourceID = resourceID, locale = locale)
