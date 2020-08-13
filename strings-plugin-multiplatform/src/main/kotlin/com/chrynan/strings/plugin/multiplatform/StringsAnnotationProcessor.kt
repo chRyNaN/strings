@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.plugin.multiplatform
 
 import com.chrynan.kotlinwriter.codeBlockString
 import com.chrynan.kotlinwriter.kotlinFile
