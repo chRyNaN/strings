@@ -1,6 +1,7 @@
 package com.chrynan.strings
 
 import com.chrynan.strings.annotation.*
+import com.chrynan.strings.core.StringGroupType
 import kotlin.reflect.KClass
 
 sealed class AnnotationValue {

@@ -1,9 +1,9 @@
 package com.chrynan.strings.accessor
 
-import com.chrynan.strings.PluralStringResourceID
-import com.chrynan.strings.Quantity
-import com.chrynan.strings.ResourceID
-import com.chrynan.strings.StringArrayResourceID
+import com.chrynan.strings.core.PluralStringResourceID
+import com.chrynan.strings.core.Quantity
+import com.chrynan.strings.core.ResourceID
+import com.chrynan.strings.core.StringArrayResourceID
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.ReceiveChannel

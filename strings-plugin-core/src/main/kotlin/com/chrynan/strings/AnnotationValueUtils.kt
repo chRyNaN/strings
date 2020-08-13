@@ -1,6 +1,7 @@
 package com.chrynan.strings
 
 import com.chrynan.strings.annotation.*
+import com.chrynan.strings.core.StringGroupType
 import org.jetbrains.kotlin.descriptors.annotations.AnnotationDescriptor
 import org.jetbrains.kotlin.fir.lightTree.converter.nameAsSafeName
 import org.jetbrains.kotlin.name.Name

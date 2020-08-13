@@ -1,6 +1,6 @@
 package com.chrynan.strings.accessor
 
-import com.chrynan.strings.*
+import com.chrynan.strings.core.*
 
 fun StringAccessor.getStringOrNull(resourceID: StaticStringResourceID, locale: String = Locale.default): String? =
     try {

@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.core
 
 class RegexStringArgumentManager : StringArgumentParser,
     StringArgumentFormatter {

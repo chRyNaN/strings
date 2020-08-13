@@ -1,7 +1,7 @@
 package com.chrynan.strings.annotation
 
-import com.chrynan.strings.Locale
-import com.chrynan.strings.Quantity
+import com.chrynan.strings.core.Locale
+import com.chrynan.strings.core.Quantity
 
 @Repeatable
 @Target(AnnotationTarget.FILE)

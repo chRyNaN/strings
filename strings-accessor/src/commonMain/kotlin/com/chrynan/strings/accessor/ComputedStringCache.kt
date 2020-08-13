@@ -1,7 +1,7 @@
 package com.chrynan.strings.accessor
 
-import com.chrynan.strings.Quantity
-import com.chrynan.strings.ResourceID
+import com.chrynan.strings.core.Quantity
+import com.chrynan.strings.core.ResourceID
 
 interface ComputedStringCache {
 

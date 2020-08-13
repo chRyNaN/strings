@@ -1,6 +1,6 @@
 package com.chrynan.strings.accessor
 
-import com.chrynan.strings.*
+import com.chrynan.strings.core.*
 
 fun string(resourceID: StaticStringResourceID, locale: String = Locale.default): Lazy<String> =
     lazy { Strings.getStaticString(resourceID = resourceID, locale = locale) }

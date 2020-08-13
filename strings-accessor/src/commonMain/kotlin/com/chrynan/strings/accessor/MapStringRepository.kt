@@ -1,6 +1,9 @@
 package com.chrynan.strings.accessor
 
-import com.chrynan.strings.*
+import com.chrynan.strings.core.PluralStringResourceID
+import com.chrynan.strings.core.Quantity
+import com.chrynan.strings.core.ResourceID
+import com.chrynan.strings.core.StringArrayResourceID
 import kotlin.String
 
 class MapStringRepository(

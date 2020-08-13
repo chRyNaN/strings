@@ -1,6 +1,6 @@
 package com.chrynan.strings.accessor
 
-import com.chrynan.strings.*
+import com.chrynan.strings.core.*
 
 abstract class BaseStringReviser(
     private val repository: MutableStringRepository,
