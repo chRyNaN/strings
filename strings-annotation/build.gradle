@@ -1,7 +1,9 @@
-apply plugin: 'kotlin-multiplatform'
+import com.chrynan.strings.buildSrc.LibraryConstants
 
-group rootProject.libraryGroup
-version rootProject.libraryVersion
+apply plugin: "kotlin-multiplatform"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
 
 kotlin {
     targets {

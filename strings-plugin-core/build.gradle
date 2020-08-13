@@ -1,7 +1,9 @@
-apply plugin: 'org.jetbrains.kotlin.jvm'
+import com.chrynan.strings.buildSrc.LibraryConstants
 
-group rootProject.libraryGroup
-version rootProject.libraryVersion
+apply plugin: "org.jetbrains.kotlin.jvm"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
@@ -26,9 +28,9 @@ compileTestKotlin {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = rootProject.libraryGroup
+            groupId = LibraryConstants.group
             artifactId = "strings-plugin-core"
-            version = rootProject.libraryVersion
+            version = LibraryConstants.versionName
 
             from components.java
         }
