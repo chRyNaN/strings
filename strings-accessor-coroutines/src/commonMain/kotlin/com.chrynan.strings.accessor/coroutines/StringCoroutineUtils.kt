@@ -1,5 +1,6 @@
-package com.chrynan.strings.accessor
+package com.chrynan.strings.accessor.coroutines
 
+import com.chrynan.strings.accessor.Strings
 import com.chrynan.strings.core.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -9,7 +10,12 @@ fun stringChanges(resourceID: StaticStringResourceID, locale: String = Locale.de
     receiveFlowFor(resourceID = resourceID, locale = locale)
         .filterIsInstance<StringUpdatedItem.StringValue>()
         .map { it.value }
-        .startWith(Strings.getStaticString(resourceID = resourceID, locale = locale))
+        .startWith(
+            Strings.getStaticString(
+                resourceID = resourceID,
+                locale = locale
+            )
+        )
 
 @ExperimentalCoroutinesApi
 fun htmlStringChanges(
@@ -19,8 +25,20 @@ fun htmlStringChanges(
 ): Flow<String> =
     receiveFlowFor(resourceID = resourceID, locale = locale)
         .filterIsInstance<StringUpdatedItem.StringValue>()
-        .map { Strings.getHtmlString(resourceID = resourceID, locale = locale, arguments = *arguments) }
-        .startWith(Strings.getHtmlString(resourceID = resourceID, locale = locale, arguments = *arguments))
+        .map {
+            Strings.getHtmlString(
+                resourceID = resourceID,
+                locale = locale,
+                arguments = *arguments
+            )
+        }
+        .startWith(
+            Strings.getHtmlString(
+                resourceID = resourceID,
+                locale = locale,
+                arguments = *arguments
+            )
+        )
 
 @ExperimentalCoroutinesApi
 fun dynamicStringChanges(
@@ -30,15 +48,31 @@ fun dynamicStringChanges(
 ): Flow<String> =
     receiveFlowFor(resourceID = resourceID, locale = locale)
         .filterIsInstance<StringUpdatedItem.StringValue>()
-        .map { Strings.getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments) }
-        .startWith(Strings.getDynamicString(resourceID = resourceID, locale = locale, arguments = *arguments))
+        .map {
+            Strings.getDynamicString(
+                resourceID = resourceID,
+                locale = locale,
+                arguments = *arguments
+            )
+        }
+        .startWith(
+            Strings.getDynamicString(
+                resourceID = resourceID,
+                locale = locale,
+                arguments = *arguments
+            )
+        )
 
 @ExperimentalCoroutinesApi
 fun stringArrayChanges(resourceID: StringArrayResourceID, locale: String = Locale.default): Flow<List<String>> =
     receiveFlowFor(resourceID = resourceID, locale = locale)
         .filterIsInstance<StringUpdatedItem.StringArray>()
         .map { it.value }
-        .startWith(Strings.getStringArray(resourceID = resourceID, locale = locale).toList())
+        .startWith(
+            Strings.getStringArray(
+                resourceID = resourceID,
+                locale = locale
+            ).toList())
 
 @ExperimentalCoroutinesApi
 fun pluralStringChanges(
@@ -82,8 +116,10 @@ private fun getOrCreateBroadcastListener(): BroadcastChannelStringUpdateListener
         .firstOrNull { it is BroadcastChannelStringUpdateListener && it.listenerID == listenerID } as? BroadcastChannelStringUpdateListener
 
     if (listener == null) {
-        listenerID = getRandomListenerID()
-        listener = BroadcastChannelStringUpdateListener(listenerID = listenerID)
+        listenerID =
+            getRandomListenerID()
+        listener =
+            BroadcastChannelStringUpdateListener(listenerID = listenerID)
         Strings.reviser.updateListeners.add(listener)
     }
 

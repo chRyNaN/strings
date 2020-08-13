@@ -1,4 +1,4 @@
-package com.chrynan.strings.accessor
+package com.chrynan.strings.accessor.coroutines
 
 import com.chrynan.strings.core.PluralStringResourceID
 import com.chrynan.strings.core.Quantity
