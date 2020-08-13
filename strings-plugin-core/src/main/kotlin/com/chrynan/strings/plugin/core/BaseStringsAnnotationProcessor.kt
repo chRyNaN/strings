@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.plugin.core
 
 import com.chrynan.logger.Logger
 import com.chrynan.logger.logError
@@ -53,7 +53,8 @@ abstract class BaseStringsAnnotationProcessor : AbstractProcessor() {
         val items = roundEnvironment.getElementsAnnotatedWith(names)
 
         if (items.isNotEmpty()) {
-            val error = IncorrectStringAnnotationUsageException(names = names)
+            val error =
+                IncorrectStringAnnotationUsageException(names = names)
             logError(throwable = error)
             throw error
         }

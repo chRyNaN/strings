@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.plugin.core
 
 fun <T, K, V> Iterable<T>.associateAllBy(keySelector: (T) -> K, valueSelector: (T) -> V): Map<K, Set<V>> {
     val map = mutableMapOf<K, MutableSet<V>>()

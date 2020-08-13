@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.plugin.core
 
 import com.chrynan.strings.annotation.*
 import de.jensklingenberg.mpapt.model.RoundEnvironment
@@ -14,7 +14,10 @@ fun RoundEnvironment.mapStaticStringsTo(map: MutableMap<FileNameAndLocation, Ann
             valueSelector = { it.annotation!!.asStaticString() })
         .assignEachTo(map) { key, thisValue, mapValue ->
             mapValue?.copy(staticStrings = mapValue.staticStrings + thisValue)
-                ?: AnnotatedFileElement(nameAndLocation = key, staticStrings = thisValue)
+                ?: AnnotatedFileElement(
+                    nameAndLocation = key,
+                    staticStrings = thisValue
+                )
         }
 }
 
@@ -25,7 +28,10 @@ fun RoundEnvironment.mapDynamicStringsTo(map: MutableMap<FileNameAndLocation, An
             valueSelector = { it.annotation!!.asDynamicString() })
         .assignEachTo(map) { key, thisValue, mapValue ->
             mapValue?.copy(dynamicStrings = mapValue.dynamicStrings + thisValue)
-                ?: AnnotatedFileElement(nameAndLocation = key, dynamicStrings = thisValue)
+                ?: AnnotatedFileElement(
+                    nameAndLocation = key,
+                    dynamicStrings = thisValue
+                )
         }
 }
 
@@ -36,7 +42,10 @@ fun RoundEnvironment.mapHtmlStringsTo(map: MutableMap<FileNameAndLocation, Annot
             valueSelector = { it.annotation!!.asHtmlString() })
         .assignEachTo(map) { key, thisValue, mapValue ->
             mapValue?.copy(htmlStrings = mapValue.htmlStrings + thisValue)
-                ?: AnnotatedFileElement(nameAndLocation = key, htmlStrings = thisValue)
+                ?: AnnotatedFileElement(
+                    nameAndLocation = key,
+                    htmlStrings = thisValue
+                )
         }
 }
 
@@ -47,7 +56,10 @@ fun RoundEnvironment.mapStringArraysTo(map: MutableMap<FileNameAndLocation, Anno
             valueSelector = { it.annotation!!.asStringArray() })
         .assignEachTo(map) { key, thisValue, mapValue ->
             mapValue?.copy(stringArrays = mapValue.stringArrays + thisValue)
-                ?: AnnotatedFileElement(nameAndLocation = key, stringArrays = thisValue)
+                ?: AnnotatedFileElement(
+                    nameAndLocation = key,
+                    stringArrays = thisValue
+                )
         }
 }
 
@@ -58,7 +70,10 @@ fun RoundEnvironment.mapStringGroupsTo(map: MutableMap<FileNameAndLocation, Anno
             valueSelector = { it.annotation!!.asStringGroup() })
         .assignEachTo(map) { key, thisValue, mapValue ->
             mapValue?.copy(stringGroups = mapValue.stringGroups + thisValue)
-                ?: AnnotatedFileElement(nameAndLocation = key, stringGroups = thisValue)
+                ?: AnnotatedFileElement(
+                    nameAndLocation = key,
+                    stringGroups = thisValue
+                )
         }
 }
 
@@ -69,6 +84,9 @@ fun RoundEnvironment.mapStringPluralsTo(map: MutableMap<FileNameAndLocation, Ann
             valueSelector = { it.annotation!!.asStringPlurals() })
         .assignEachTo(map) { key, thisValue, mapValue ->
             mapValue?.copy(stringPlurals = mapValue.stringPlurals + thisValue)
-                ?: AnnotatedFileElement(nameAndLocation = key, stringPlurals = thisValue)
+                ?: AnnotatedFileElement(
+                    nameAndLocation = key,
+                    stringPlurals = thisValue
+                )
         }
 }

@@ -3,6 +3,8 @@ package com.chrynan.strings
 import com.chrynan.kotlinwriter.codeBlockString
 import com.chrynan.kotlinwriter.kotlinFile
 import com.chrynan.strings.core.Locale
+import com.chrynan.strings.plugin.core.AnnotatedFileElement
+import com.chrynan.strings.plugin.core.BaseStringsAnnotationProcessor
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.asClassName
 

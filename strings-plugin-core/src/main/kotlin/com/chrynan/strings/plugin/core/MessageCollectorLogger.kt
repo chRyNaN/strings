@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.plugin.core
 
 import com.chrynan.logger.LogInitializer
 import com.chrynan.logger.LogType

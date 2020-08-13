@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.plugin.core
 
 data class AnnotatedFileElement(
     val nameAndLocation: FileNameAndLocation,

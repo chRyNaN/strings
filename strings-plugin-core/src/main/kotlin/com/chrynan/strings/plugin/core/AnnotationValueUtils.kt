@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.plugin.core
 
 import com.chrynan.strings.annotation.*
 import com.chrynan.strings.core.StringGroupType
@@ -18,7 +18,11 @@ fun AnnotationDescriptor.asStaticString(): StaticStringAnnotationValue {
     val fieldValueValue = values[fieldNameValue]?.value as String
     val fieldValueLocale = values[fieldNameLocale]?.value as String
 
-    return StaticStringAnnotationValue(name = fieldValueName, value = fieldValueValue, locale = fieldValueLocale)
+    return StaticStringAnnotationValue(
+        name = fieldValueName,
+        value = fieldValueValue,
+        locale = fieldValueLocale
+    )
 }
 
 fun AnnotationDescriptor.asDynamicString(): DynamicStringAnnotationValue {
@@ -32,7 +36,11 @@ fun AnnotationDescriptor.asDynamicString(): DynamicStringAnnotationValue {
     val fieldValueValue = values[fieldNameValue]?.value as String
     val fieldValueLocale = values[fieldNameLocale]?.value as String
 
-    return DynamicStringAnnotationValue(name = fieldValueName, value = fieldValueValue, locale = fieldValueLocale)
+    return DynamicStringAnnotationValue(
+        name = fieldValueName,
+        value = fieldValueValue,
+        locale = fieldValueLocale
+    )
 }
 
 fun AnnotationDescriptor.asHtmlString(): HtmlStringAnnotationValue {
@@ -46,7 +54,11 @@ fun AnnotationDescriptor.asHtmlString(): HtmlStringAnnotationValue {
     val fieldValueValue = values[fieldNameValue]?.value as String
     val fieldValueLocale = values[fieldNameLocale]?.value as String
 
-    return HtmlStringAnnotationValue(name = fieldValueName, value = fieldValueValue, locale = fieldValueLocale)
+    return HtmlStringAnnotationValue(
+        name = fieldValueName,
+        value = fieldValueValue,
+        locale = fieldValueLocale
+    )
 }
 
 @Suppress("UNCHECKED_CAST")

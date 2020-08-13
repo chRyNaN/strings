@@ -1,4 +1,4 @@
-package com.chrynan.strings
+package com.chrynan.strings.plugin.core
 
 import com.chrynan.strings.annotation.*
 import com.chrynan.strings.core.StringGroupType
@@ -24,7 +24,8 @@ data class StaticStringAnnotationValue(
     val locale: String
 ) : AnnotationValue() {
 
-    override val topLevelType: TopLevelType = TopLevelType.STATIC
+    override val topLevelType: TopLevelType =
+        TopLevelType.STATIC
 }
 
 data class DynamicStringAnnotationValue(
@@ -33,7 +34,8 @@ data class DynamicStringAnnotationValue(
     val locale: String
 ) : AnnotationValue() {
 
-    override val topLevelType: TopLevelType = TopLevelType.DYNAMIC
+    override val topLevelType: TopLevelType =
+        TopLevelType.DYNAMIC
 }
 
 data class HtmlStringAnnotationValue(
@@ -42,7 +44,8 @@ data class HtmlStringAnnotationValue(
     val locale: String
 ) : AnnotationValue() {
 
-    override val topLevelType: TopLevelType = TopLevelType.HTML
+    override val topLevelType: TopLevelType =
+        TopLevelType.HTML
 }
 
 data class StringArrayAnnotationValue(
@@ -51,7 +54,8 @@ data class StringArrayAnnotationValue(
     val values: List<StringArrayItem> = emptyList()
 ) : AnnotationValue() {
 
-    override val topLevelType: TopLevelType = TopLevelType.STRING_ARRAY
+    override val topLevelType: TopLevelType =
+        TopLevelType.STRING_ARRAY
 }
 
 data class StringGroupAnnotationValue(
@@ -60,7 +64,8 @@ data class StringGroupAnnotationValue(
     val values: List<StringGroupItem> = emptyList()
 ) : AnnotationValue() {
 
-    override val topLevelType: TopLevelType = TopLevelType.STRING_GROUP
+    override val topLevelType: TopLevelType =
+        TopLevelType.STRING_GROUP
 }
 
 data class StringPluralsAnnotationValue(
@@ -69,5 +74,6 @@ data class StringPluralsAnnotationValue(
     val values: List<StringPluralItem> = emptyList()
 ) : AnnotationValue() {
 
-    override val topLevelType: TopLevelType = TopLevelType.STRING_PLURALS
+    override val topLevelType: TopLevelType =
+        TopLevelType.STRING_PLURALS
 }
