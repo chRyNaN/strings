@@ -7,9 +7,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     compileOnly "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.3.71"
 
-    api project(":core")
-    api project(":annotation")
-    api project(":accessor")
+    api project(":strings-core")
+    api project(":strings-annotation")
+    api project(":strings-accessor")
 
     api "com.chrynan.logger:logger-core-jvm:1.2.1"
     api "de.jensklingenberg:mpapt-runtime:0.8.4"

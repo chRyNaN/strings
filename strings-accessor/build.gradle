@@ -13,7 +13,8 @@ kotlin {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
 
-                implementation project(":core")
+                api project(":strings-core")
+                api project(":strings-annotation")
             }
         }
         jvmMain {
@@ -36,16 +37,16 @@ configurations {
 publishing {
     publications {
         kotlinMultiplatform {
-            artifactId = "strings-annotation"
+            artifactId = "strings-accessor"
         }
         jvm {
-            artifactId = "strings-annotation-jvm"
+            artifactId = "strings-accessor-jvm"
         }
         js {
-            artifactId = "strings-annotation-js"
+            artifactId = "strings-accessor-js"
         }
         metadata {
-            artifactId = "strings-annotation-metadata"
+            artifactId = "strings-accessor-metadata"
         }
     }
 }

@@ -1,10 +1,10 @@
 rootProject.name = "resources"
 
-include ":accessor"
-include ":accessor-coroutines"
-include ":annotation"
-include ":core"
-include ":plugin-core"
-include ":plugin-multiplatform"
+include ":strings-accessor"
+include ":strings-accessor-coroutines"
+include ":strings-annotation"
+include ":strings-core"
+include ":strings-plugin-core"
+include ":strings-plugin-multiplatform"
 
 enableFeaturePreview("GRADLE_METADATA")
