@@ -1,0 +1,54 @@
+import com.chrynan.strings.buildSrc.LibraryConstants
+
+apply plugin: "kotlin-multiplatform"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+kotlin {
+    targets {
+        jvm()
+        js()
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib"
+            }
+        }
+        jsMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
+            }
+        }
+        all {
+            languageSettings.enableLanguageFeature("InlineClasses")
+        }
+    }
+}
+
+configurations {
+    compileClasspath
+}
+
+publishing {
+    publications {
+        kotlinMultiplatform {
+            artifactId = "strings-creator-core"
+        }
+        jvm {
+            artifactId = "strings-creator-core-jvm"
+        }
+        js {
+            artifactId = "strings-creator-core-js"
+        }
+        metadata {
+            artifactId = "strings-creator-core-metadata"
+        }
+    }
+}

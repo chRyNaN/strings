@@ -17,13 +17,19 @@ interface StringArgumentParser {
         val type: Type
     ) {
 
-        enum class Type {
+        sealed class Type {
 
-            INT,
-            FLOAT,
-            DOUBLE,
-            CHAR,
-            STRING
+            object Int : Type()
+
+            object Float : Type()
+
+            object Double : Type()
+
+            object Char : Type()
+
+            object String : Type()
+
+            data class Custom(val fullName: kotlin.String) : Type()
         }
     }
 }
