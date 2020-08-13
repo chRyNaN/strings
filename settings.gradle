@@ -1,4 +1,4 @@
-rootProject.name = "resources"
+rootProject.name = "strings"
 
 include ":strings-accessor"
 include ":strings-accessor-coroutines"
