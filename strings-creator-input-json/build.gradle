@@ -15,7 +15,7 @@ kotlin {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
 
-                api project(":strings-core")
+                implementation project(":strings-creator-core")
             }
         }
         jvmMain {
@@ -41,16 +41,16 @@ configurations {
 publishing {
     publications {
         kotlinMultiplatform {
-            artifactId = "strings-creator-core"
+            artifactId = "strings-creator-input-json"
         }
         jvm {
-            artifactId = "strings-creator-core-jvm"
+            artifactId = "strings-creator-input-json-jvm"
         }
         js {
-            artifactId = "strings-creator-core-js"
+            artifactId = "strings-creator-input-json-js"
         }
         metadata {
-            artifactId = "strings-creator-core-metadata"
+            artifactId = "strings-creator-input-json-metadata"
         }
     }
 }

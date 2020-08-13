@@ -7,5 +7,11 @@ enum class Quantity {
     TWO,
     FEW,
     MANY,
-    OTHER
+    OTHER;
+
+    companion object {
+
+        fun fromName(name: String): Quantity? =
+            values().firstOrNull { it.name.toLowerCase() == name.toLowerCase() }
+    }
 }
