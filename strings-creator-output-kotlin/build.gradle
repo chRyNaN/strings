@@ -15,6 +15,7 @@ kotlin {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
 
+                implementation project(":strings-accessor")
                 implementation project(":strings-creator-core")
             }
         }
