@@ -2,17 +2,10 @@ package com.chrynan.strings.accessor
 
 import com.chrynan.strings.core.*
 
-abstract class BaseStringReviser(
-    private val repository: MutableStringRepository,
-    parser: StringArgumentParser,
-    formatter: StringArgumentFormatter,
-    private val computedStringCache: ComputedStringCache
-) : BaseStringAccessor(
-    repository = repository,
-    parser = parser,
-    formatter = formatter,
-    computedStringCache = computedStringCache
-), StringReviser {
+abstract class BaseStringReviser : BaseStringAccessor(),
+    StringReviser {
+
+    abstract override val repository: MutableStringRepository
 
     override val updateListeners: MutableSet<StringUpdateListener> = mutableSetOf()
 

@@ -2,12 +2,12 @@ package com.chrynan.strings.accessor
 
 import com.chrynan.strings.core.*
 
-abstract class BaseStringAccessor(
-    private val repository: StringRepository,
-    private val parser: StringArgumentParser,
-    private val formatter: StringArgumentFormatter,
-    private val computedStringCache: ComputedStringCache
-) : StringAccessor {
+abstract class BaseStringAccessor : StringAccessor {
+
+    abstract val repository: StringRepository
+    abstract val parser: StringArgumentParser
+    abstract val formatter: StringArgumentFormatter
+    abstract val computedStringCache: ComputedStringCache
 
     override fun getStaticString(resourceID: StaticStringResourceID, locale: String): String =
         repository.getStringValue(resourceID = resourceID, locale = locale)
