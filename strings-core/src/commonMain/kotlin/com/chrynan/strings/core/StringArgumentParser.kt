@@ -19,17 +19,69 @@ interface StringArgumentParser {
 
         sealed class Type {
 
-            object Int : Type()
+            companion object {
 
-            object Float : Type()
+                fun fromTypeName(typeName: kotlin.String, ignoreCase: Boolean = true): Type =
+                    when {
+                        Any.matchesTypeName(typeName, ignoreCase) -> Any
+                        Int.matchesTypeName(typeName, ignoreCase) -> Int
+                        Long.matchesTypeName(typeName, ignoreCase) -> Long
+                        Float.matchesTypeName(typeName, ignoreCase) -> Float
+                        Double.matchesTypeName(typeName, ignoreCase) -> Double
+                        Char.matchesTypeName(typeName, ignoreCase) -> Char
+                        String.matchesTypeName(typeName, ignoreCase) -> String
+                        else -> Custom(typeName)
+                    }
+            }
 
-            object Double : Type()
+            abstract val typeNames: List<kotlin.String>
 
-            object Char : Type()
+            fun matchesTypeName(typeName: kotlin.String, ignoreCase: Boolean = true): Boolean =
+                if (ignoreCase) {
+                    typeNames.firstOrNull { it.toLowerCase() == typeName.toLowerCase() } != null
+                } else {
+                    typeNames.contains(typeName)
+                }
 
-            object String : Type()
+            object Any : Type() {
 
-            data class Custom(val fullName: kotlin.String) : Type()
+                override val typeNames: List<kotlin.String> = listOf("Any", "a")
+            }
+
+            object Int : Type() {
+
+                override val typeNames: List<kotlin.String> = listOf("Int", "i")
+            }
+
+            object Long : Type() {
+
+                override val typeNames: List<kotlin.String> = listOf("Long", "l")
+            }
+
+            object Float : Type() {
+
+                override val typeNames: List<kotlin.String> = listOf("Float", "f")
+            }
+
+            object Double : Type() {
+
+                override val typeNames: List<kotlin.String> = listOf("Double", "d")
+            }
+
+            object Char : Type() {
+
+                override val typeNames: List<kotlin.String> = listOf("Char", "c")
+            }
+
+            object String : Type() {
+
+                override val typeNames: List<kotlin.String> = listOf("String", "s")
+            }
+
+            data class Custom(val fullName: kotlin.String) : Type() {
+
+                override val typeNames: List<kotlin.String> = listOf(fullName)
+            }
         }
     }
 }
