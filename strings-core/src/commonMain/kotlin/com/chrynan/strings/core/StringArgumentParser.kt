@@ -9,11 +9,29 @@ interface StringArgumentParser {
         val arguments: List<Argument> = emptyList()
     )
 
+    /**
+     * Represents an argument in a Dynamic Styled [String]. An argument is something that can be changed
+     * when the [String] is being retrieved.
+     *
+     * @property [index] The argument index. For instance, if this is the first argument in the [String],
+     * then the index value would be 0.
+     * @property [number] The index of the first instance of this argument name. If there are multiple
+     * of the same argument in the [String], then this value will always equal the first index of the
+     * argument.
+     * @property [value] The unformatted value in the [String], including the argument name, type,
+     * prefix, and suffix.
+     * @property [formattedValue] The same as the [value] without the prefix and suffix.
+     * @property [range] The index range where this argument resides in the input [String].
+     * @property [name] The name of this argument.
+     * @property [type] The type of this argument.
+     */
     data class Argument(
+        val index: Int,
         val number: Int,
         val value: String,
-        val startIndexInclusive: Int,
-        val endIndexExclusive: Int,
+        val formattedValue: String,
+        val range: IntRange,
+        val name: String,
         val type: Type
     ) {
 
