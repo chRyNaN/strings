@@ -1,7 +1,6 @@
 package com.chrynan.strings.core
 
-class RegexStringArgumentManager : StringArgumentParser,
-    StringArgumentFormatter {
+class RegexStringArgumentManager : StringArgumentManager {
 
     companion object {
 
@@ -32,14 +31,14 @@ class RegexStringArgumentManager : StringArgumentParser,
                 val name = formattedValue.substringBefore(KEY_VALUE_SEPARATOR)
                 val typeName = formattedValue.substringAfter(KEY_VALUE_SEPARATOR)
 
-                StringArgumentParser.Argument(
+                StringArgument(
                     index = index,
                     number = number,
                     range = item.range,
                     value = item.value,
                     formattedValue = formattedValue,
                     name = name,
-                    type = StringArgumentParser.Argument.Type.fromTypeName(typeName)
+                    type = StringArgument.Type.fromTypeName(typeName)
                 )
             }
             .toList()

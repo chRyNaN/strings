@@ -32,8 +32,8 @@ abstract class BaseStringAccessor : StringAccessor {
             .sortedBy { it.number }
             .mapIndexed { index, argument ->
                 StringArgumentFormatter.Value(
-                    inputValue = argument.value,
-                    outputValue = arguments[index].toString()
+                    argument = argument,
+                    output = arguments[index].toString()
                 )
             }
 
@@ -64,8 +64,8 @@ abstract class BaseStringAccessor : StringAccessor {
             .sortedBy { it.number }
             .mapIndexed { index, argument ->
                 StringArgumentFormatter.Value(
-                    inputValue = argument.value,
-                    outputValue = arguments[index].toString()
+                    argument = argument,
+                    output = arguments[index].toString()
                 )
             }
 
@@ -106,8 +106,8 @@ abstract class BaseStringAccessor : StringAccessor {
             .sortedBy { it.number }
             .mapIndexed { index, argument ->
                 StringArgumentFormatter.Value(
-                    inputValue = argument.value,
-                    outputValue = arguments[index].toString()
+                    argument = argument,
+                    output = arguments[index].toString()
                 )
             }
 
