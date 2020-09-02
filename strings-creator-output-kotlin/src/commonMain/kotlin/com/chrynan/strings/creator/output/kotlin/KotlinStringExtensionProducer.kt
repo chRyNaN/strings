@@ -26,16 +26,16 @@ class KotlinStringExtensionProducer(private val stringArgumentManager: StringArg
         return """
             package ${input.packageName}
             
-            import ${ResourceID::class.qualifiedName}
-            import ${StaticStringResourceID::class.qualifiedName}
-            import ${DynamicStringResourceID::class.qualifiedName}
-            import ${HtmlStringResourceID::class.qualifiedName}
-            import ${PluralStringResourceID::class.qualifiedName}
-            import ${StringArrayResourceID::class.qualifiedName}
+            import com.chrynan.strings.core.ResourceID
+            import com.chrynan.strings.core.StaticStringResourceID
+            import com.chrynan.strings.core.DynamicStringResourceID
+            import com.chrynan.strings.core.HtmlStringResourceID
+            import com.chrynan.strings.core.PluralStringResourceID
+            import com.chrynan.strings.core.StringArrayResourceID
             
-            import ${Strings::class.qualifiedName}
-            import ${Locale::class.qualifiedName}
-            import ${Quantity::class.qualifiedName}
+            import com.chrynan.strings.accessor.Strings
+            import com.chrynan.strings.core.Locale
+            import com.chrynan.strings.core.Quantity
             
             $extensionFunctions
         """.trimIndent()
@@ -43,13 +43,13 @@ class KotlinStringExtensionProducer(private val stringArgumentManager: StringArg
 
     private fun createStaticStringExtension(type: StringType.Static): String =
         """
-            inline fun Strings.${type.name}(locale: String = ${Locale::class.simpleName}.default): String =
+            inline fun Strings.${type.name}(locale: String = Locale.default): String =
                 Strings.getStaticString(resourceID = StringResID.${type.name}, locale = locale)
         """.trimIndent()
 
     private fun createStringArrayExtension(type: StringType.Array): String =
         """
-            inline fun Strings.${type.name}(locale: String = ${Locale::class.simpleName}.default): Array<String> =
+            inline fun Strings.${type.name}(locale: String = Locale.default): Array<String> =
                 Strings.getStringArray(resourceID = StringResID.${type.name}, locale = locale)
         """.trimIndent()
 
@@ -73,7 +73,7 @@ class KotlinStringExtensionProducer(private val stringArgumentManager: StringArg
 
         val allParameters = parameters.joinToString(
             separator = ", ",
-            prefix = "locale: String = ${Locale::class.simpleName}.default"
+            prefix = "locale: String = Locale.default"
         )
 
         return """
@@ -102,7 +102,7 @@ class KotlinStringExtensionProducer(private val stringArgumentManager: StringArg
 
         val allParameters = parameters.joinToString(
             separator = ", ",
-            prefix = "locale: String = ${Locale::class.simpleName}.default"
+            prefix = "locale: String = Locale.default"
         )
 
         return """
@@ -131,7 +131,7 @@ class KotlinStringExtensionProducer(private val stringArgumentManager: StringArg
 
         val allParameters = parameters.joinToString(
             separator = ", ",
-            prefix = "locale: String = ${Locale::class.simpleName}.default, quantity: ${Quantity::class.simpleName},"
+            prefix = "locale: String = Locale.default, quantity: Quantity,"
         )
 
         return """

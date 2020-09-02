@@ -1,10 +1,5 @@
 package com.chrynan.strings.creator.output.kotlin
 
-import com.chrynan.strings.accessor.BaseStringReviser
-import com.chrynan.strings.accessor.MapComputedStringCache
-import com.chrynan.strings.accessor.MapStringRepository
-import com.chrynan.strings.core.RegexStringArgumentManager
-import com.chrynan.strings.core.StringArgumentManager
 import com.chrynan.strings.creator.core.StringType
 
 class KotlinStringReviserProducer : KotlinFileProducer {
@@ -32,11 +27,11 @@ class KotlinStringReviserProducer : KotlinFileProducer {
         return """
             package ${input.packageName}
 
-            import ${RegexStringArgumentManager::class.qualifiedName}
-            import ${StringArgumentManager::class.qualifiedName}
-            import ${BaseStringReviser::class.qualifiedName}
-            import ${MapStringRepository::class.qualifiedName}
-            import ${MapComputedStringCache::class.qualifiedName}
+            import com.chrynan.strings.core.RegexStringArgumentManager
+            import com.chrynan.strings.core.StringArgumentManager
+            import com.chrynan.strings.accessor.BaseStringReviser
+            import com.chrynan.strings.accessor.MapStringRepository
+            import com.chrynan.strings.accessor.MapComputedStringCache
 
             class KotlinStrings : BaseStringReviser() {
 

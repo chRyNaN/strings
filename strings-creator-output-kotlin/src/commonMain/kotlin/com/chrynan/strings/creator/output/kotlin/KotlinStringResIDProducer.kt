@@ -1,6 +1,5 @@
 package com.chrynan.strings.creator.output.kotlin
 
-import com.chrynan.strings.core.*
 import com.chrynan.strings.creator.core.StringType
 
 class KotlinStringResIDProducer : KotlinFileProducer {
@@ -16,12 +15,12 @@ class KotlinStringResIDProducer : KotlinFileProducer {
         return """
             package ${input.packageName}
             
-            import ${ResourceID::class.qualifiedName}
-            import ${StaticStringResourceID::class.qualifiedName}
-            import ${DynamicStringResourceID::class.qualifiedName}
-            import ${HtmlStringResourceID::class.qualifiedName}
-            import ${PluralStringResourceID::class.qualifiedName}
-            import ${StringArrayResourceID::class.qualifiedName}
+            import com.chrynan.strings.core.ResourceID
+            import com.chrynan.strings.core.StaticStringResourceID
+            import com.chrynan.strings.core.DynamicStringResourceID
+            import com.chrynan.strings.core.HtmlStringResourceID
+            import com.chrynan.strings.core.PluralStringResourceID
+            import com.chrynan.strings.core.StringArrayResourceID
 
             object StringResID {
                 

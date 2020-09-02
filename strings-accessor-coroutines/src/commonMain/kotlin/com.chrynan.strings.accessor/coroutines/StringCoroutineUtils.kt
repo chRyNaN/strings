@@ -72,7 +72,8 @@ fun stringArrayChanges(resourceID: StringArrayResourceID, locale: String = Local
             Strings.getStringArray(
                 resourceID = resourceID,
                 locale = locale
-            ).toList())
+            ).toList()
+        )
 
 @ExperimentalCoroutinesApi
 fun pluralStringChanges(
@@ -105,7 +106,7 @@ private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
 private var listenerID: String? = null
 
 private fun getRandomListenerID(): String = (1..32)
-    .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+    .map { kotlin.random.Random.nextInt(0, charPool.size) }
     .map(charPool::get)
     .joinToString("")
 
