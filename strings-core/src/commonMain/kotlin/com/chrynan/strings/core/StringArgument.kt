@@ -44,6 +44,7 @@ data class StringArgument(
         }
 
         abstract val typeNames: List<kotlin.String>
+        abstract val kotlinTypeName: kotlin.String
 
         fun matchesTypeName(typeName: kotlin.String, ignoreCase: Boolean = true): Boolean =
             if (ignoreCase) {
@@ -55,41 +56,49 @@ data class StringArgument(
         object Any : Type() {
 
             override val typeNames: List<kotlin.String> = listOf("Any", "a")
+            override val kotlinTypeName: kotlin.String = "Any"
         }
 
         object Int : Type() {
 
             override val typeNames: List<kotlin.String> = listOf("Int", "i")
+            override val kotlinTypeName: kotlin.String = "Int"
         }
 
         object Long : Type() {
 
             override val typeNames: List<kotlin.String> = listOf("Long", "l")
+            override val kotlinTypeName: kotlin.String = "Long"
         }
 
         object Float : Type() {
 
             override val typeNames: List<kotlin.String> = listOf("Float", "f")
+            override val kotlinTypeName: kotlin.String = "Float"
         }
 
         object Double : Type() {
 
             override val typeNames: List<kotlin.String> = listOf("Double", "d")
+            override val kotlinTypeName: kotlin.String = "Double"
         }
 
         object Char : Type() {
 
             override val typeNames: List<kotlin.String> = listOf("Char", "c")
+            override val kotlinTypeName: kotlin.String = "Char"
         }
 
         object String : Type() {
 
             override val typeNames: List<kotlin.String> = listOf("String", "s")
+            override val kotlinTypeName: kotlin.String = "String"
         }
 
         data class Custom(val fullName: kotlin.String) : Type() {
 
             override val typeNames: List<kotlin.String> = listOf(fullName)
+            override val kotlinTypeName: kotlin.String = fullName
         }
     }
 }
