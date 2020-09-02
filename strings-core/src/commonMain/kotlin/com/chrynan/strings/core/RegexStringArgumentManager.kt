@@ -50,7 +50,12 @@ class RegexStringArgumentManager : StringArgumentManager {
     }
 
     override fun format(input: String, values: List<StringArgumentFormatter.Value>): String {
-        // TODO
-        return ""
+        var output = input
+
+        values.forEach {
+            output = output.replace(oldValue = it.argument.value, newValue = it.output)
+        }
+
+        return output
     }
 }
