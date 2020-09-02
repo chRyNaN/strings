@@ -48,7 +48,7 @@ class KotlinStringReviserProducer : KotlinFileProducer {
                     )
                 }
 
-                private val stringArgumentManager by lazy { RegexStringArgumentManager() }
+                override val argumentManager by lazy { RegexStringArgumentManager() }
 
                 override val repository by lazy {
                     MapStringRepository(
@@ -56,10 +56,6 @@ class KotlinStringReviserProducer : KotlinFileProducer {
                         stringArrayMap = arrays
                     )
                 }
-
-                override val parser by lazy { stringArgumentManager }
-
-                override val formatter by lazy { stringArgumentManager }
 
                 override val computedStringCache by lazy { MapComputedStringCache() }
             }
