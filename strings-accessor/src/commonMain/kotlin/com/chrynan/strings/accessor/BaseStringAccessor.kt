@@ -5,8 +5,7 @@ import com.chrynan.strings.core.*
 abstract class BaseStringAccessor : StringAccessor {
 
     abstract val repository: StringRepository
-    abstract val parser: StringArgumentParser
-    abstract val formatter: StringArgumentFormatter
+    abstract val argumentManager: StringArgumentManager
     abstract val computedStringCache: ComputedStringCache
 
     override fun getStaticString(resourceID: StaticStringResourceID, locale: String): String =
@@ -25,19 +24,7 @@ abstract class BaseStringAccessor : StringAccessor {
 
         val string = repository.getStringValue(resourceID = resourceID, locale = locale)
 
-        val result = parser.parse(input = string)
-
-        val values = result.arguments
-            .distinctBy { it.number }
-            .sortedBy { it.number }
-            .mapIndexed { index, argument ->
-                StringArgumentFormatter.Value(
-                    argument = argument,
-                    output = arguments[index].toString()
-                )
-            }
-
-        val formattedOutput = formatter.format(input = string, values = values)
+        val formattedOutput = argumentManager.parseAndFormat(input = string, arguments = *arguments)
 
         computedStringCache[cacheKey] = formattedOutput
 
@@ -57,19 +44,7 @@ abstract class BaseStringAccessor : StringAccessor {
 
         val string = repository.getStringValue(resourceID = resourceID, locale = locale)
 
-        val result = parser.parse(input = string)
-
-        val values = result.arguments
-            .distinctBy { it.number }
-            .sortedBy { it.number }
-            .mapIndexed { index, argument ->
-                StringArgumentFormatter.Value(
-                    argument = argument,
-                    output = arguments[index].toString()
-                )
-            }
-
-        val formattedOutput = formatter.format(input = string, values = values)
+        val formattedOutput = argumentManager.parseAndFormat(input = string, arguments = *arguments)
 
         computedStringCache[cacheKey] = formattedOutput
 
@@ -99,19 +74,7 @@ abstract class BaseStringAccessor : StringAccessor {
 
         val string = repository.getPluralStringValue(resourceID = resourceID, locale = locale, quantity = quantity)
 
-        val result = parser.parse(input = string)
-
-        val values = result.arguments
-            .distinctBy { it.number }
-            .sortedBy { it.number }
-            .mapIndexed { index, argument ->
-                StringArgumentFormatter.Value(
-                    argument = argument,
-                    output = arguments[index].toString()
-                )
-            }
-
-        val formattedOutput = formatter.format(input = string, values = values)
+        val formattedOutput = argumentManager.parseAndFormat(input = string, arguments = *arguments)
 
         computedStringCache[cacheKey] = formattedOutput
 
