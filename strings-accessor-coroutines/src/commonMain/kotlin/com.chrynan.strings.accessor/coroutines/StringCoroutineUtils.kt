@@ -110,6 +110,7 @@ private fun getRandomListenerID(): String = (1..32)
     .map(charPool::get)
     .joinToString("")
 
+@Suppress("unused")
 @ExperimentalCoroutinesApi
 private fun getOrCreateBroadcastListener(): BroadcastChannelStringUpdateListener {
     var listener: BroadcastChannelStringUpdateListener? = Strings.reviser
@@ -117,10 +118,23 @@ private fun getOrCreateBroadcastListener(): BroadcastChannelStringUpdateListener
         .firstOrNull { it is BroadcastChannelStringUpdateListener && it.listenerID == listenerID } as? BroadcastChannelStringUpdateListener
 
     if (listener == null) {
-        listenerID =
-            getRandomListenerID()
-        listener =
-            BroadcastChannelStringUpdateListener(listenerID = listenerID)
+        listenerID = getRandomListenerID()
+        listener = BroadcastChannelStringUpdateListener(listenerID = listenerID)
+        Strings.reviser.updateListeners.add(listener)
+    }
+
+    return listener
+}
+
+@ExperimentalCoroutinesApi
+private fun getOrCreateStateFlowListener(): StateFlowStringUpdateListener {
+    var listener: StateFlowStringUpdateListener? = Strings.reviser
+        .updateListeners
+        .firstOrNull { it is StateFlowStringUpdateListener && it.listenerID == listenerID } as? StateFlowStringUpdateListener
+
+    if (listener == null) {
+        listenerID = getRandomListenerID()
+        listener = StateFlowStringUpdateListener(listenerID = listenerID)
         Strings.reviser.updateListeners.add(listener)
     }
 
@@ -129,9 +143,8 @@ private fun getOrCreateBroadcastListener(): BroadcastChannelStringUpdateListener
 
 @ExperimentalCoroutinesApi
 private fun receiveFlowFor(resourceID: ResourceID, locale: String): Flow<StringUpdatedItem> =
-    getOrCreateBroadcastListener()
+    getOrCreateStateFlowListener()
         .openSubscription()
-        .receiveAsFlow()
         .filter { it.resourceID == resourceID && it.locale == locale }
 
 @ExperimentalCoroutinesApi
