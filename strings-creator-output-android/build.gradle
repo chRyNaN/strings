@@ -1,0 +1,57 @@
+import com.chrynan.strings.buildSrc.LibraryConstants
+
+apply plugin: "kotlin-multiplatform"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+kotlin {
+    targets {
+        jvm()
+        js()
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
+
+                implementation project(":strings-accessor")
+                implementation project(":strings-creator-core")
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib"
+            }
+        }
+        jsMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
+            }
+        }
+        all {
+            languageSettings.enableLanguageFeature("InlineClasses")
+        }
+    }
+}
+
+configurations {
+    compileClasspath
+}
+
+publishing {
+    publications {
+        kotlinMultiplatform {
+            artifactId = "strings-creator-output-android"
+        }
+        jvm {
+            artifactId = "strings-creator-output-android-jvm"
+        }
+        js {
+            artifactId = "strings-creator-output-android-js"
+        }
+        metadata {
+            artifactId = "strings-creator-output-android-metadata"
+        }
+    }
+}

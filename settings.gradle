@@ -9,5 +9,6 @@ include ":strings-plugin-multiplatform"
 include ":strings-creator-core"
 include ":strings-creator-input-json"
 include ":strings-creator-output-kotlin"
+include ":strings-creator-output-android"
 
 enableFeaturePreview("GRADLE_METADATA")
