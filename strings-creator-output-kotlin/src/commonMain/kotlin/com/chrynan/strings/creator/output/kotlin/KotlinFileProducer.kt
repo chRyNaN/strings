@@ -7,7 +7,13 @@ package com.chrynan.strings.creator.output.kotlin
  */
 interface KotlinFileProducer {
 
+    /**
+     * Produces a [String] representing a Kotlin file output using the provided [input].
+     */
     fun produce(input: KotlinFileProducerInput): String
 
+    /**
+     * A convenience function for calling [produce].
+     */
     operator fun invoke(input: KotlinFileProducerInput): String = produce(input)
 }
