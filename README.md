@@ -7,15 +7,52 @@ The goal of this library is to abstract both the creation and retrieval of strin
 
 ## Using the library
 
+### Add the Dependencies
+
+#### Plugin
+```groovy
+apply plugin: "com.chrynan.strings.plugin.gradle.json"
+```
+
+#### Runtime Dependency
+```groovy
+repositories {
+    maven {
+        url = "https://dl.bintray.com/chrynan/chrynan"
+    }
+}
+
+dependencies {
+    implementation "com.chrynan.strings:strings-accessor:$VERSION"
+}
+```
+
+### Configure the Plugin
+
+```groovy
+jsonStrings {
+    inputPaths = ["location/to/json/string/file.json"]
+    outputPath = "src/commonMain/kotlin/com.chrynan.example"
+    outputPackageName = "com.chrynan.example"
+}
+```
+
+### Run the Gradle Task
+
+```
+./gradlew generateStringsFromJsonInput
+```
+
 ### Create the Strings
 
 #### JSON
+Create a JSON file with a top-level array containing the String objects.
 ```json
-{
+[{
   "type": "static",
   "name": "helloWorld",
   "value": "Hello World"
-}
+}]
 ```
 
 #### Kotlin Annotations (Not yet supported)
@@ -27,7 +64,7 @@ The goal of this library is to abstract both the creation and retrieval of strin
 ### Add the generated `StringAccessor`
 
 ```kotlin
-Strings.accessor = GeneratedStringAccessor()
+Strings.accessor = KotlinStrings() // Generated Class
 ```
 
 ### Access the String Resources
