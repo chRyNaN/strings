@@ -37,12 +37,6 @@ jsonStrings {
 }
 ```
 
-### Run the Gradle Task
-
-```
-./gradlew generateStringsFromJsonInput
-```
-
 ### Create the Strings
 
 #### JSON
@@ -59,6 +53,12 @@ Create a JSON file with a top-level array containing the String objects.
 ```kotlin
 // File MyStrings - File name and location can be anything
 @file:StaticString(name = "helloWorld", value = "Hello World")
+```
+
+### Run the Gradle Task
+
+```
+./gradlew generateStringsFromJsonInput
 ```
 
 ### Add the generated `StringAccessor`
