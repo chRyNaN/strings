@@ -3,6 +3,7 @@ package com.chrynan.strings.creator.output.kotlin
 import com.chrynan.strings.creator.core.StringType
 import com.chrynan.strings.accessor.Strings
 import com.chrynan.strings.core.*
+import com.chrynan.strings.creator.core.StringTypeFileOutput
 
 /**
  * A [KotlinFileProducer] that creates a Kotlin file [String] with extension functions
@@ -12,7 +13,7 @@ import com.chrynan.strings.core.*
  */
 class KotlinStringExtensionProducer(private val stringArgumentManager: StringArgumentManager) : KotlinFileProducer {
 
-    override fun produce(input: KotlinFileProducerInput): KotlinFileProducerOutput {
+    override fun produce(input: KotlinFileProducerInput): StringTypeFileOutput {
         val extensionFunctions = input.types.joinToString(separator = "\n\n") {
             when (it) {
                 is StringType.Static -> createStaticStringExtension(it)
@@ -40,7 +41,7 @@ class KotlinStringExtensionProducer(private val stringArgumentManager: StringArg
             $extensionFunctions
         """.trimIndent()
 
-        return KotlinFileProducerOutput(
+        return StringTypeFileOutput(
             fileName = "KotlinStringExtensions.kt",
             fileText = text
         )

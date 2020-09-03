@@ -1,10 +1,11 @@
 package com.chrynan.strings.creator.output.kotlin
 
 import com.chrynan.strings.creator.core.StringType
+import com.chrynan.strings.creator.core.StringTypeFileOutput
 
 class KotlinStringReviserProducer : KotlinFileProducer {
 
-    override fun produce(input: KotlinFileProducerInput): KotlinFileProducerOutput {
+    override fun produce(input: KotlinFileProducerInput): StringTypeFileOutput {
         val mapEntries = StringBuilder()
         val arrayMapEntries = StringBuilder()
 
@@ -60,7 +61,7 @@ class KotlinStringReviserProducer : KotlinFileProducer {
             }
         """.trimIndent()
 
-        return KotlinFileProducerOutput(
+        return StringTypeFileOutput(
             fileName = "KotlinStrings.kt",
             fileText = text
         )
