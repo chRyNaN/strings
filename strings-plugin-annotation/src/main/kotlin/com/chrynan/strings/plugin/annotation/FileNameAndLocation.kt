@@ -1,4 +1,4 @@
-package com.chrynan.strings.plugin.core
+package com.chrynan.strings.plugin.annotation
 
 data class FileNameAndLocation(
     val path: String,

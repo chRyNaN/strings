@@ -1,4 +1,4 @@
-package com.chrynan.strings.plugin.core
+package com.chrynan.strings.plugin.annotation
 
 import com.chrynan.strings.annotation.*
 import com.chrynan.strings.core.StringGroupType

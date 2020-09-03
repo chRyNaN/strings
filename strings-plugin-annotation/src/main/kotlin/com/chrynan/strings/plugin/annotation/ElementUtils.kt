@@ -1,4 +1,4 @@
-package com.chrynan.strings.plugin.core
+package com.chrynan.strings.plugin.annotation
 
 import de.jensklingenberg.mpapt.model.Element
 
