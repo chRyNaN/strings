@@ -6,7 +6,7 @@ import com.chrynan.strings.creator.core.StringTypeFileProducer
 /**
  * An interface that produces a [StringTypeFileOutput] representation of a Kotlin File (.kt) using the [produce] function.
  *
- * The returned [String] value from the [produce] function can then be used to write to a File.
+ * The returned [StringTypeFileOutput] value from the [produce] function can then be used to write to a File.
  */
 interface KotlinFileProducer : StringTypeFileProducer<KotlinFileProducerInput> {
 
