@@ -8,7 +8,9 @@ import com.chrynan.strings.core.Locale
  * @property [fileName] The name of the file being parsed.
  * @property [fileLocale] The optional locale provided in the file name. Each element can override
  * this value with their own [JsonStringValue.locale] property. But if one isn't present, then this
- * value is used, and if this value isn't present, then the [Locale.default] value is used.
+ * value is used, and if this value isn't present, then the [Locale.default] value is used. This
+ * value is derived from the [fileName] by taking the text after the first file name locale
+ * separator. The file name locale separator is provided by the user in the plugin.
  * @property [jsonString] The [String] representation of the JSON from the file.
  */
 data class JsonStringTypeInput(

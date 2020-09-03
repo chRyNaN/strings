@@ -4,7 +4,7 @@ import com.chrynan.strings.creator.core.StringType
 
 class KotlinStringReviserProducer : KotlinFileProducer {
 
-    override fun produce(input: KotlinFileProducerInput): String {
+    override fun produce(input: KotlinFileProducerInput): KotlinFileProducerOutput {
         val mapEntries = StringBuilder()
         val arrayMapEntries = StringBuilder()
 
@@ -24,7 +24,7 @@ class KotlinStringReviserProducer : KotlinFileProducer {
             }
         }
 
-        return """
+        val text = """
             package ${input.packageName}
 
             import com.chrynan.strings.core.RegexStringArgumentManager
@@ -59,6 +59,11 @@ class KotlinStringReviserProducer : KotlinFileProducer {
                 override val computedStringCache by lazy { MapComputedStringCache() }
             }
         """.trimIndent()
+
+        return KotlinFileProducerOutput(
+            fileName = "KotlinStrings.kt",
+            fileText = text
+        )
     }
 
     private fun createMapEntry(type: StringType): String =

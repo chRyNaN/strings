@@ -12,7 +12,7 @@ import com.chrynan.strings.core.*
  */
 class KotlinStringExtensionProducer(private val stringArgumentManager: StringArgumentManager) : KotlinFileProducer {
 
-    override fun produce(input: KotlinFileProducerInput): String {
+    override fun produce(input: KotlinFileProducerInput): KotlinFileProducerOutput {
         val extensionFunctions = input.types.joinToString(separator = "\n\n") {
             when (it) {
                 is StringType.Static -> createStaticStringExtension(it)
@@ -23,7 +23,7 @@ class KotlinStringExtensionProducer(private val stringArgumentManager: StringArg
             }
         }
 
-        return """
+        val text = """
             package ${input.packageName}
             
             import com.chrynan.strings.core.ResourceID
@@ -39,6 +39,11 @@ class KotlinStringExtensionProducer(private val stringArgumentManager: StringArg
             
             $extensionFunctions
         """.trimIndent()
+
+        return KotlinFileProducerOutput(
+            fileName = "KotlinStringExtensions.kt",
+            fileText = text
+        )
     }
 
     private fun createStaticStringExtension(type: StringType.Static): String =

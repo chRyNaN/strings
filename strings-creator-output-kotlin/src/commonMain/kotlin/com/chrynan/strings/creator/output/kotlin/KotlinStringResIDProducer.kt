@@ -4,7 +4,7 @@ import com.chrynan.strings.creator.core.StringType
 
 class KotlinStringResIDProducer : KotlinFileProducer {
 
-    override fun produce(input: KotlinFileProducerInput): String {
+    override fun produce(input: KotlinFileProducerInput): KotlinFileProducerOutput {
         val ids = buildString {
             input.types.forEach {
                 append(createStringResourceIDDefinition(it))
@@ -12,7 +12,7 @@ class KotlinStringResIDProducer : KotlinFileProducer {
             }
         }
 
-        return """
+        val text = """
             package ${input.packageName}
             
             import com.chrynan.strings.core.ResourceID
@@ -27,6 +27,11 @@ class KotlinStringResIDProducer : KotlinFileProducer {
                 $ids
             }
         """.trimIndent()
+
+        return KotlinFileProducerOutput(
+            fileName = "StringResID.kt",
+            fileText = text
+        )
     }
 
     private fun createStringResourceIDDefinition(type: StringType): String {

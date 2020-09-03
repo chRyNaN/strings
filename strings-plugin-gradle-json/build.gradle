@@ -1,6 +1,7 @@
 import com.chrynan.strings.buildSrc.LibraryConstants
 
 apply plugin: "org.jetbrains.kotlin.jvm"
+apply plugin: "java-gradle-plugin"
 
 group LibraryConstants.group
 version LibraryConstants.versionName
@@ -30,6 +31,15 @@ publishing {
             version = LibraryConstants.versionName
 
             from components.java
+        }
+    }
+}
+
+gradlePlugin {
+    plugins {
+        jsonStringInputPlugin {
+            id = "com.chrynan.strings.plugin.gradle.json"
+            implementationClass = "com.chrynan.strings.plugin.gradle.json.JsonStringInputPlugin"
         }
     }
 }
