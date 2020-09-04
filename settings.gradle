@@ -10,5 +10,6 @@ include ":strings-creator-core"
 include ":strings-creator-input-json"
 include ":strings-creator-output-kotlin"
 include ":strings-creator-output-android"
+include ":strings-example-json"
 
 enableFeaturePreview("GRADLE_METADATA")

@@ -1,0 +1,55 @@
+import com.chrynan.strings.buildSrc.LibraryConstants
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url = "https://dl.bintray.com/chrynan/chrynan"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
+        classpath "com.chrynan.strings.plugin.gradle.json:com.chrynan.strings.plugin.gradle.json.gradle.plugin:0.2.0"
+    }
+}
+
+apply plugin: "kotlin-multiplatform"
+apply plugin: "com.chrynan.strings.plugin.gradle.json"
+
+kotlin {
+    targets {
+        jvm()
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
+
+                implementation "com.chrynan.strings:strings-accessor:0.2.0"
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+                implementation "com.chrynan.strings:strings-accessor-jvm:0.2.0"
+            }
+        }
+        all {
+            repositories {
+                jcenter()
+                maven {
+                    url = "https://dl.bintray.com/chrynan/chrynan"
+                }
+            }
+        }
+    }
+}
+
+jsonStrings {
+    inputPaths = ["src/commonMain/resources/strings.json"]
+    outputPath = "src/commonMain/kotlin/com.chrynan.strings.example.json/"
+}
