@@ -6,12 +6,13 @@ version LibraryConstants.versionName
 buildscript {
     repositories {
         jcenter()
+        mavenLocal()
         maven {
             url = "https://dl.bintray.com/chrynan/chrynan"
         }
     }
     dependencies {
-        classpath "com.chrynan.strings.plugin.gradle.json:com.chrynan.strings.plugin.gradle.json.gradle.plugin:0.2.0"
+        classpath "com.chrynan.strings.plugin.gradle.json:com.chrynan.strings.plugin.gradle.json.gradle.plugin:0.2.3"
     }
 }
 

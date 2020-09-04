@@ -1,7 +1,9 @@
 package com.chrynan.strings.creator.input.json
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.chrynan.strings.creator.core.StringTypeName
+import kotlinx.serialization.*
+import kotlinx.serialization.json.JsonInput
+import kotlinx.serialization.json.JsonObject
 
 @Serializable
 sealed class JsonStringValue {
@@ -38,5 +40,37 @@ sealed class JsonStringValue {
             @SerialName(value = "quantity") val quantity: String,
             @SerialName(value = "value") val value: String
         )
+    }
+}
+
+@Serializer(forClass = JsonStringValue::class)
+object JsonStringValueSerializer : KSerializer<JsonStringValue> {
+
+    override fun serialize(encoder: Encoder, value: JsonStringValue) {
+        when (value) {
+            is JsonStringValue.StringValue -> encoder.encode(JsonStringValue.StringValue.serializer(), value)
+            is JsonStringValue.ArrayValue -> encoder.encode(JsonStringValue.ArrayValue.serializer(), value)
+            is JsonStringValue.PluralsValue -> encoder.encode(JsonStringValue.PluralsValue.serializer(), value)
+        }
+    }
+
+    override fun deserialize(decoder: Decoder): JsonStringValue {
+        val input = decoder as? JsonInput
+            ?: throw SerializationException("Expected JsonInput for $decoder when deserializing.")
+        val jsonObject = input.decodeJson() as? JsonObject
+            ?: throw SerializationException("Expected JsonObject when deserializing.")
+
+        val type = jsonObject.getPrimitive("type").content
+
+        val serializer = when (StringTypeName.fromName(type)) {
+            StringTypeName.STATIC -> JsonStringValue.StringValue.serializer()
+            StringTypeName.DYNAMIC -> JsonStringValue.StringValue.serializer()
+            StringTypeName.HTML -> JsonStringValue.StringValue.serializer()
+            StringTypeName.ARRAY -> JsonStringValue.ArrayValue.serializer()
+            StringTypeName.PLURALS -> JsonStringValue.PluralsValue.serializer()
+            else -> throw SerializationException("Invalid type name.")
+        }
+
+        return decoder.json.parse(serializer, jsonObject.toString())
     }
 }
