@@ -12,7 +12,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.chrynan.strings.plugin.gradle.json:com.chrynan.strings.plugin.gradle.json.gradle.plugin:0.2.3"
+        classpath "com.chrynan.strings.plugin.gradle.json:com.chrynan.strings.plugin.gradle.json.gradle.plugin:0.2.4"
     }
 }
 
@@ -28,7 +28,7 @@ kotlin {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
 
-                implementation "com.chrynan.strings:strings-accessor:0.2.0"
+                implementation "com.chrynan.strings:strings-accessor:0.2.4"
             }
         }
         jvmMain {
@@ -41,6 +41,7 @@ kotlin {
         all {
             repositories {
                 jcenter()
+                mavenLocal()
                 maven {
                     url = "https://dl.bintray.com/chrynan/chrynan"
                 }
@@ -66,4 +67,5 @@ publishing {
 jsonStrings {
     inputPaths = ["src/commonMain/resources/strings.json"]
     outputPath = "src/commonMain/kotlin/com.chrynan.strings.example.json/"
+    outputPackageName = "com.chrynan.strings.example.json"
 }

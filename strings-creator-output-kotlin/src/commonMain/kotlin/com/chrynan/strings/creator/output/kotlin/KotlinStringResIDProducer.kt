@@ -37,11 +37,11 @@ class KotlinStringResIDProducer : KotlinFileProducer {
 
     private fun createStringResourceIDDefinition(type: StringType): String {
         val instantiation = when (type) {
-            is StringType.Static -> "StaticStringResourceID(name = ${type.name})"
-            is StringType.Dynamic -> "DynamicStringResourceID(name = ${type.name})"
-            is StringType.Html -> "HtmlStringResourceID(name = ${type.name})"
-            is StringType.Plurals -> "PluralStringResourceID(name = ${type.name})"
-            is StringType.Array -> "StringArrayResourceID(name = ${type.name})"
+            is StringType.Static -> "StaticStringResourceID(name = \"${type.name}\")"
+            is StringType.Dynamic -> "DynamicStringResourceID(name = \"${type.name}\")"
+            is StringType.Html -> "HtmlStringResourceID(name = \"${type.name}\")"
+            is StringType.Plurals -> "PluralStringResourceID(name = \"${type.name}\")"
+            is StringType.Array -> "StringArrayResourceID(name = \"${type.name}\")"
         }
 
         return "val ${type.name} = $instantiation"

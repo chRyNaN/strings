@@ -56,11 +56,15 @@ class JsonStringInputPlugin : Plugin<Project> {
                     val resIDOutput = kotlinStringResIDProducer.produce(fileProducerInput)
                     val reviserOutput = kotlinStringReviserProducer.produce(fileProducerInput)
 
+                    val outputDirectory = File(outputPath)
+
+                    if (!outputDirectory.exists()) outputDirectory.mkdirs()
+
                     val resIDFile = File("$outputPath/${resIDOutput.fileName}")
                     val reviserFile = File("$outputPath/${reviserOutput.fileName}")
 
-                    if (!resIDFile.exists()) resIDFile.mkdirs()
-                    if (!reviserFile.exists()) reviserFile.mkdirs()
+                    if (!resIDFile.exists()) resIDFile.createNewFile()
+                    if (!reviserFile.exists()) reviserFile.createNewFile()
 
                     resIDFile.writeText(resIDOutput.fileText)
                     reviserFile.writeText(reviserOutput.fileText)

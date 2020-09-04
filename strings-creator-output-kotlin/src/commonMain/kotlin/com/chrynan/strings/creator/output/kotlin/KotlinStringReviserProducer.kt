@@ -69,17 +69,17 @@ class KotlinStringReviserProducer : KotlinFileProducer {
 
     private fun createMapEntry(type: StringType): String =
         when (type) {
-            is StringType.Static -> "Key(resourceID = StringResID.${type.name}, locale = ${type.locale}, quantity = null) to ${type.value}"
-            is StringType.Dynamic -> "Key(resourceID = StringResID.${type.name}, locale = ${type.locale}, quantity = null) to ${type.value}"
-            is StringType.Html -> "Key(resourceID = StringResID.${type.name}, locale = ${type.locale}, quantity = null) to ${type.value}"
+            is StringType.Static -> "Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
+            is StringType.Dynamic -> "Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
+            is StringType.Html -> "Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
             is StringType.Array -> createArrayMapEntry(type)
             is StringType.Plurals -> createPluralsMapEntry(type)
         }
 
     private fun createArrayMapEntry(type: StringType.Array): String {
-        val arrayItems = type.values.joinToString(separator = ", ", prefix = "arrayOf(", postfix = ")")
+        val arrayItems = type.values.joinToString(separator = ", ", prefix = "arrayOf(", postfix = ")") { "\"$it\"" }
 
-        return "Key(resourceID = StringResID.${type.name}, locale = ${type.locale}, quantity = null) to $arrayItems"
+        return "Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to $arrayItems"
     }
 
     private fun createPluralsMapEntry(type: StringType.Plurals): String = buildString {
@@ -88,7 +88,7 @@ class KotlinStringReviserProducer : KotlinFileProducer {
                 append(",\n")
             }
 
-            append("Key(resourceID = StringResID.${type.name}, locale = ${type.locale}, quantity = ${item.quantity}) to ${item.value}")
+            append("Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = ${item.quantity}) to ${item.value}")
         }
     }
 }
