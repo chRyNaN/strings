@@ -30,50 +30,48 @@ allprojects {
 }
 
 subprojects {
-    if (path != "strings-example-json") {
-        apply plugin: "maven-publish"
-        apply plugin: "com.jfrog.bintray"
-        apply plugin: "org.jetbrains.dokka"
+    apply plugin: "maven-publish"
+    apply plugin: "com.jfrog.bintray"
+    apply plugin: "org.jetbrains.dokka"
 
-        dokka {
-            outputFormat = "gfm"
-            outputDirectory = "../docs"
+    dokka {
+        outputFormat = "gfm"
+        outputDirectory = "../docs"
 
-            configuration {
-                includeNonPublic = false
-                skipEmptyPackages = true
-                skipDeprecated = true
-                reportUndocumented = true
-                jdkVersion = 8
-                targets = ["JVM", "COMMON"]
-            }
+        configuration {
+            includeNonPublic = false
+            skipEmptyPackages = true
+            skipDeprecated = true
+            reportUndocumented = true
+            jdkVersion = 8
+            targets = ["JVM", "COMMON"]
         }
-
-        bintray {
-            user = project.findProperty("BINTRAY_USER") ?: System.getenv("BINTRAY_USER")
-            key = project.findProperty("BINTRAY_KEY") ?: System.getenv("BINTRAY_KEY")
-            pkg {
-                repo = LibraryConstants.bintrayRepo
-                name = LibraryConstants.repoName
-                licenses = [LibraryConstants.license]
-                vcsUrl = LibraryConstants.vcsUrl
-                version {
-                    name = LibraryConstants.versionName
-                    desc = LibraryConstants.versionDescription
-                    released = new Date()
-                    vcsTag = LibraryConstants.versionName
-                }
-            }
-        }
-
-        bintrayUpload.doFirst {
-            publications = publishing.publications.collect {
-                it.name
-            }
-        }
-
-        bintrayUpload.dependsOn publishToMavenLocal
     }
+
+    bintray {
+        user = project.findProperty("BINTRAY_USER") ?: System.getenv("BINTRAY_USER")
+        key = project.findProperty("BINTRAY_KEY") ?: System.getenv("BINTRAY_KEY")
+        pkg {
+            repo = LibraryConstants.bintrayRepo
+            name = LibraryConstants.repoName
+            licenses = [LibraryConstants.license]
+            vcsUrl = LibraryConstants.vcsUrl
+            version {
+                name = LibraryConstants.versionName
+                desc = LibraryConstants.versionDescription
+                released = new Date()
+                vcsTag = LibraryConstants.versionName
+            }
+        }
+    }
+
+    bintrayUpload.doFirst {
+        publications = publishing.publications.collect {
+            it.name
+        }
+    }
+
+    bintrayUpload.dependsOn publishToMavenLocal
 }
 
 task clean(type: Delete) {
