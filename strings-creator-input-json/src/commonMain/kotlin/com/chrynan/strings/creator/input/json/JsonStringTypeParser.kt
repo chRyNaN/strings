@@ -5,9 +5,11 @@ import com.chrynan.strings.core.Quantity
 import com.chrynan.strings.creator.core.StringType
 import com.chrynan.strings.creator.core.StringTypeName
 import com.chrynan.strings.creator.core.StringTypeParser
+import kotlinx.serialization.PolymorphicSerializer
 import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
+import kotlinx.serialization.modules.SerializersModule
 
 /**
  * Converts a [JsonStringTypeInput] into a [List] of [StringType]s so that they can be used to
@@ -19,9 +21,17 @@ import kotlinx.serialization.json.JsonConfiguration
 class JsonStringTypeParser : StringTypeParser<JsonStringTypeInput> {
 
     override fun parse(input: JsonStringTypeInput): List<StringType> {
-        val serializer = JsonStringValue.serializer().list
+        val serializer = PolymorphicSerializer(JsonStringValue::class).list
 
-        val json = Json(JsonConfiguration.Stable)
+        val module = SerializersModule {
+            polymorphic(JsonStringValue::class) {
+                JsonStringValue.StringValue::class with JsonStringValue.StringValue.serializer()
+                JsonStringValue.ArrayValue::class with JsonStringValue.ArrayValue.serializer()
+                JsonStringValue.PluralsValue::class with JsonStringValue.PluralsValue.serializer()
+            }
+        }
+
+        val json = Json(JsonConfiguration.Stable, context = module)
 
         return json.parse(serializer, input.jsonString)
             .map {
