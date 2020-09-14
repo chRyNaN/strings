@@ -14,20 +14,20 @@ class KotlinStringResIDProducer : KotlinFileProducer {
         }
 
         val text = """
-            package ${input.packageName}
-            
-            import com.chrynan.strings.core.ResourceID
-            import com.chrynan.strings.core.StaticStringResourceID
-            import com.chrynan.strings.core.DynamicStringResourceID
-            import com.chrynan.strings.core.HtmlStringResourceID
-            import com.chrynan.strings.core.PluralStringResourceID
-            import com.chrynan.strings.core.StringArrayResourceID
-
-            object StringResID {
-                
-                $ids
-            }
-        """.trimIndent()
+        |    package ${input.packageName}
+        |    
+        |    import com.chrynan.strings.core.ResourceID
+        |    import com.chrynan.strings.core.StaticStringResourceID
+        |    import com.chrynan.strings.core.DynamicStringResourceID
+        |    import com.chrynan.strings.core.HtmlStringResourceID
+        |    import com.chrynan.strings.core.PluralStringResourceID
+        |    import com.chrynan.strings.core.StringArrayResourceID
+        |
+        |    object StringResID {
+        |        
+        |        $ids
+        |    }
+        """.trimMargin()
 
         return StringTypeFileOutput(
             fileName = "StringResID.kt",

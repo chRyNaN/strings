@@ -34,7 +34,7 @@ class JsonStringInputPlugin : Plugin<Project> {
             task.group = GROUP_NAME
 
             task.doFirst {
-                val stringTypes = extension.inputPaths.map { File(it) }
+                val stringTypes = extension.inputPaths.map { File("${target.projectDir}/$it") }
                     .map { file ->
                         val fileLocale =
                             extension.fileNameLocaleSeparator?.let { file.name.substringAfter(it) }
@@ -58,7 +58,15 @@ class JsonStringInputPlugin : Plugin<Project> {
                     val kotlinExtension = target.extensions.getByName("kotlin") as KotlinMultiplatformExtension
                     val sourceSet = kotlinExtension.sourceSets.getByName(KotlinSourceSet.COMMON_MAIN_SOURCE_SET_NAME)
 
-                    sourceSet.kotlin
+                    kotlinExtension.targets.forEach {
+                        it.preset
+                        println(
+                            "targetName = ${it.targetName}; name = ${it.name}; platformType = ${it.platformType}; " +
+                                    "components = ${it.components.map { it.name }}; publishable = ${it.publishable}; artifactsTaskName = ${it.artifactsTaskName}; " +
+                                    "attributes = ${it.attributes.keySet()}; defaultConfigurationName = ${it.defaultConfigurationName}; " +
+                                    "apiElementsConfigurationName = ${it.apiElementsConfigurationName}; runtimeElementsConfigurationName = ${it.runtimeElementsConfigurationName}\n"
+                        )
+                    }
 
                     val resIDOutput = kotlinStringResIDProducer.produce(fileProducerInput)
                     val reviserOutput = kotlinStringReviserProducer.produce(fileProducerInput)
@@ -81,7 +89,7 @@ class JsonStringInputPlugin : Plugin<Project> {
 
                         val extensionFile = File("$outputPath/${extensionOutput.fileName}")
 
-                        if (!extensionFile.exists()) extensionFile.mkdirs()
+                        if (!extensionFile.exists()) extensionFile.createNewFile()
 
                         extensionFile.writeText(extensionOutput.fileText)
                     }
@@ -90,3 +98,15 @@ class JsonStringInputPlugin : Plugin<Project> {
         }
     }
 }
+
+data class KotlinTarget(
+    val targetName: String,
+    val name: String,
+    val platformType: String,
+    val components: List<String>,
+    val publishable: Boolean,
+    val artifactsTaskName: String,
+    val defaultConfigurationName: String,
+    val apiElementsConfigurationName: String,
+    val runtimeElementsConfigurationName: String
+)

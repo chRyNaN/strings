@@ -26,40 +26,40 @@ class KotlinStringReviserProducer : KotlinFileProducer {
         }
 
         val text = """
-            package ${input.packageName}
-
-            import com.chrynan.strings.core.RegexStringArgumentManager
-            import com.chrynan.strings.core.StringArgumentManager
-            import com.chrynan.strings.accessor.BaseStringReviser
-            import com.chrynan.strings.accessor.MapStringRepository
-            import com.chrynan.strings.accessor.MapComputedStringCache
-
-            class KotlinStrings : BaseStringReviser() {
-
-                private val strings: Map<MapStringRepository.Key, String> by lazy {
-                    mapOf<MapStringRepository.Key, String>(
-                        $mapEntries
-                    )
-                }
-
-                private val arrays: Map<MapStringRepository.Key, Array<String>> by lazy {
-                    mapOf<MapStringRepository.Key, Array<String>>(
-                        $arrayMapEntries
-                    )
-                }
-
-                override val argumentManager by lazy { RegexStringArgumentManager() }
-
-                override val repository by lazy {
-                    MapStringRepository(
-                        stringMap = strings,
-                        stringArrayMap = arrays
-                    )
-                }
-
-                override val computedStringCache by lazy { MapComputedStringCache() }
-            }
-        """.trimIndent()
+        |    package ${input.packageName}
+        |
+        |    import com.chrynan.strings.core.RegexStringArgumentManager
+        |    import com.chrynan.strings.core.StringArgumentManager
+        |    import com.chrynan.strings.accessor.BaseStringReviser
+        |    import com.chrynan.strings.accessor.MapStringRepository
+        |    import com.chrynan.strings.accessor.MapComputedStringCache
+        |
+        |    class KotlinStrings : BaseStringReviser() {
+        |
+        |        private val strings: Map<MapStringRepository.Key, String> by lazy {
+        |            mapOf<MapStringRepository.Key, String>(
+        |                $mapEntries
+        |            )
+        |        }
+        |
+        |        private val arrays: Map<MapStringRepository.Key, Array<String>> by lazy {
+        |            mapOf<MapStringRepository.Key, Array<String>>(
+        |                $arrayMapEntries
+        |            )
+        |        }
+        |
+        |        override val argumentManager by lazy { RegexStringArgumentManager() }
+        |
+        |        override val repository by lazy {
+        |            MapStringRepository(
+        |                stringMap = strings,
+        |                stringArrayMap = arrays
+        |            )
+        |        }
+        |
+        |        override val computedStringCache by lazy { MapComputedStringCache() }
+        |    }
+        """.trimMargin()
 
         return StringTypeFileOutput(
             fileName = "KotlinStrings.kt",
@@ -69,9 +69,9 @@ class KotlinStringReviserProducer : KotlinFileProducer {
 
     private fun createMapEntry(type: StringType): String =
         when (type) {
-            is StringType.Static -> "Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
-            is StringType.Dynamic -> "Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
-            is StringType.Html -> "Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
+            is StringType.Static -> "MapStringRepository.Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
+            is StringType.Dynamic -> "MapStringRepository.Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
+            is StringType.Html -> "MapStringRepository.Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to \"${type.value}\""
             is StringType.Array -> createArrayMapEntry(type)
             is StringType.Plurals -> createPluralsMapEntry(type)
         }
@@ -79,7 +79,7 @@ class KotlinStringReviserProducer : KotlinFileProducer {
     private fun createArrayMapEntry(type: StringType.Array): String {
         val arrayItems = type.values.joinToString(separator = ", ", prefix = "arrayOf(", postfix = ")") { "\"$it\"" }
 
-        return "Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to $arrayItems"
+        return "MapStringRepository.Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = null) to $arrayItems"
     }
 
     private fun createPluralsMapEntry(type: StringType.Plurals): String = buildString {
@@ -88,7 +88,7 @@ class KotlinStringReviserProducer : KotlinFileProducer {
                 append(",\n")
             }
 
-            append("Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = ${item.quantity}) to ${item.value}")
+            append("MapStringRepository.Key(resourceID = StringResID.${type.name}, locale = \"${type.locale}\", quantity = ${item.quantity}) to ${item.value}")
         }
     }
 }
