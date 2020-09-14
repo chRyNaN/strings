@@ -9,6 +9,10 @@ version LibraryConstants.versionName
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
+    compileOnly(gradleApi())
+
+    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72"
+
     implementation project(":strings-creator-core")
     implementation project(":strings-creator-input-json")
     implementation project(":strings-creator-output-android")

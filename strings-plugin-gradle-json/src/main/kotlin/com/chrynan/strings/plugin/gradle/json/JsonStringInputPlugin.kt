@@ -10,6 +10,8 @@ import com.chrynan.strings.creator.output.kotlin.KotlinStringReviserProducer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.io.File
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 class JsonStringInputPlugin : Plugin<Project> {
 
@@ -52,6 +54,11 @@ class JsonStringInputPlugin : Plugin<Project> {
                         types = stringTypes,
                         packageName = outputPackageName
                     )
+
+                    val kotlinExtension = target.extensions.getByName("kotlin") as KotlinMultiplatformExtension
+                    val sourceSet = kotlinExtension.sourceSets.getByName(KotlinSourceSet.COMMON_MAIN_SOURCE_SET_NAME)
+
+                    sourceSet.kotlin
 
                     val resIDOutput = kotlinStringResIDProducer.produce(fileProducerInput)
                     val reviserOutput = kotlinStringReviserProducer.produce(fileProducerInput)

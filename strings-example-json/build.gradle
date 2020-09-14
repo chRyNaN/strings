@@ -28,14 +28,12 @@ kotlin {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
 
-                implementation "com.chrynan.strings:strings-accessor:0.2.4"
+                implementation project(":strings-accessor")
             }
         }
         jvmMain {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib"
-
-                implementation "com.chrynan.strings:strings-accessor-jvm:0.2.0"
             }
         }
         all {
