@@ -98,15 +98,3 @@ class JsonStringInputPlugin : Plugin<Project> {
         }
     }
 }
-
-data class KotlinTarget(
-    val targetName: String,
-    val name: String,
-    val platformType: String,
-    val components: List<String>,
-    val publishable: Boolean,
-    val artifactsTaskName: String,
-    val defaultConfigurationName: String,
-    val apiElementsConfigurationName: String,
-    val runtimeElementsConfigurationName: String
-)
